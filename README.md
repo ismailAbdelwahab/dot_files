@@ -6,6 +6,7 @@
 ## Programs that will be installed:
   - Git
   - Sublime text
+  - Build-essential ( gcc, C code, lib, etc...)
   - For Python:
       - pip
       - requests
