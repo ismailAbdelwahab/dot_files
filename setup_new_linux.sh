@@ -41,6 +41,9 @@ echo "deb https://download.sublimetext.com/ apt/stable/" | sudo tee /etc/apt/sou
 sudo apt-get update
 sudo apt-get install -y sublime-text
 
+BLUE "Installing build-essential..."
+sudo apt-get install build-essential 
+
 BLUE "Installing pip..."
 sudo apt-get install -y python-pip
 
