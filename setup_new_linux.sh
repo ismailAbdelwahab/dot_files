@@ -41,6 +41,11 @@ echo "deb https://download.sublimetext.com/ apt/stable/" | sudo tee /etc/apt/sou
 sudo apt-get update
 sudo apt-get install -y sublime-text
 
+BLUE "Installing Atom..."
+wget "https://atom.io/download/deb" -O atom.deb
+dpkg -i atom.deb
+rm atom.deb
+
 BLUE "Installing build-essential..."
 sudo apt-get install build-essential 
 
