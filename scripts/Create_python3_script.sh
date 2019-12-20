@@ -54,7 +54,7 @@ echo "#!/usr/bin/env python3" > ${FILE}
 echo -e "\n
 def main():
 \tpass\n
-if __name__ = '__main__':
+if __name__ == '__main__':
 \tmain()\n" >> ${FILE}
 
 #Done.
