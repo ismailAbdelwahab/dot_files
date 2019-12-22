@@ -8,16 +8,16 @@ BLUE=`tput bold && tput setaf 4`
 NC=`tput sgr0`
 
 function RED(){	
-	echo "${RED}${1}${NC}" 
+	echo -e "${RED}${1}${NC}" 
 }
 function GREEN(){
-	echo "${GREEN}${1}${NC}"
+	echo -e "${GREEN}${1}${NC}"
 }
 function YELLOW(){
-	echo "${YELLOW}${1}${NC}"
+	echo -e "${YELLOW}${1}${NC}"
 }
 function BLUE(){
-	echo "${BLUE}${1}${NC}"
+	echo -e "${BLUE}${1}${NC}"
 }
 
 ################################################
@@ -25,12 +25,12 @@ function BLUE(){
 if [ $# -eq 0 ]; then
     	RED "   Error: No argument supplied."
     	YELLOW "usage : ${0} name_of_your_file"
-    	YELLOW "  or  : ${0} name_of_your_file.sh"
-	echo "" ; exit -1
+    	YELLOW "  or  : ${0} name_of_your_file.sh\n"
+	exit -1
 fi
 
 ################################################
-# Compute the name of the file as "something.py":
+# Compute the name of the file as "something.sh":
 if [ ${1: -3} == ".sh" ]; then
 	FILE=${1}
 else
@@ -41,8 +41,8 @@ fi
 # Check if file does not already exist:
 if [ -f ${FILE} ]; then
     	RED "   Error: file [${FILE}] already exist."
-     	YELLOW "No file created, try with another name please."
-	echo "" ; exit -2
+     	YELLOW "No file created, try with another name please.\n"
+	exit -2
 fi
 
 touch ${FILE}
@@ -59,19 +59,18 @@ BLUE=\`tput bold && tput setaf 4\`
 NC=\`tput sgr0\`
 
 function RED(){
-        echo "\${RED}\${1}\${NC}" 
+        echo -e "\${RED}\${1}\${NC}" 
 }
 function GREEN(){
-        echo "\${GREEN}\${1}\${NC}"
+        echo -e "\${GREEN}\${1}\${NC}"
 }
 function YELLOW(){
-        echo "\${YELLOW}\${1}\${NC}"
+        echo -e "\${YELLOW}\${1}\${NC}"
 }
 function BLUE(){
-        echo "\${BLUE}$\{1}\${NC}"
+        echo -e "\${BLUE}$\{1}\${NC}"
 }
 " >> ${FILE}
 
 #Done.
-GREEN "    File created : ${FILE}"
-echo ""
+GREEN "    File created : ${FILE}\n"
