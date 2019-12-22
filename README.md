@@ -20,6 +20,7 @@
   - Nmap
   - Curl
   - Wireshark
+  - Bless (Hex editor)
   
 # Scripts that will be added
   - Create_python3_script.sh 
