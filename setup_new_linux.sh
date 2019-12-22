@@ -67,5 +67,5 @@ sudo apt-get install -y curl
 BLUE "Installing Wireshark..."
 sudo apt-get install -y wireshark
 
-BLUE "Installing Wireshark..."
+BLUE "Installing Bless..."
 sudo apt-get install -y bless
