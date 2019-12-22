@@ -23,7 +23,7 @@ function BLUE(){
 # Testing if root...
 if [ $UID -ne 0 ]
 then
-	RED "You must run this script as root!" && echo
+	RED "You must run this script as root!" && echoWireshark
 	exit
 fi
 
@@ -67,3 +67,5 @@ sudo apt-get install -y curl
 BLUE "Installing Wireshark..."
 sudo apt-get install -y wireshark
 
+BLUE "Installing Wireshark..."
+sudo apt-get install -y bless
