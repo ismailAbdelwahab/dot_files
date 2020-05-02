@@ -9,18 +9,21 @@
 * [Installation](#installation)
 
 # Programs that will be installed:
-  - Git
-  - Sublime text
-  - Atom
   - Build-essential ( gcc, C code, lib, etc...)
+  - Git
+  - Text and Hex editors:
+      - Vim
+      - Sublime text
+      - Atom
+      - Bless
   - For Python:
       - pip
       - requests
       - pwntools
-  - Nmap
-  - Curl
-  - Wireshark
-  - Bless (Hex editor)
+  - Networking tools:
+      - Nmap
+      - Curl
+      - Wireshark
   
 # Scripts that will be added
   - Create_python3_script.sh 
