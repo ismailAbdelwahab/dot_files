@@ -11,6 +11,7 @@
 # Programs that will be installed:
   - Build-essential ( gcc, C code, lib, etc...)
   - Git
+  - Macchanger
   - Text and Hex editors:
       - Vim
       - Sublime text
@@ -30,8 +31,11 @@
 >{Will create a python3 executable script, with header, main etc...}
   
   - Create_bash_script.sh
->{Will create a bash executable script, with colors function}
-> usage: RED "your text"
+>{Will create a bash executable script, with colors function} > usage: RED "your text"
+
+  - INIT_monitor_mode.sh
+  - INIT_managed_mode.sh
+>{Give a wireless interface name in stdin to switch mode in monitor or managed.}
 
 # Information
 ## For programs
