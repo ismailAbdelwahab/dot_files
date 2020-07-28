@@ -17,22 +17,26 @@ then
 	exit 1
 fi
 ##############################################################
-################## Update #######################
+################## Update ###########################
 BLUE "Updating repositories..."
 sudo apt update
-#################################################
 
+#####################################################
+################### Utility #########################
 BLUE "Installing build-essential..."
-sudo apt-get install build-essential 
+sudo apt-get install -y build-essential 
 
 BLUE "Installing git..."
 sudo apt install -y git
+
+BLUE "Installing macchanger..."
+sudo apt-get install -y macchanger
 
 ################## Text/Hex editors #################
 # Vim, Sublime Text, Atom // Bless
 YELLOW " Text and Hex Editors:"
 BLUE "\tInstalling Vim"
-sudo apt-get install vim
+sudo apt-get install -y vim
 
 #BLUE "\tInstalling Sublime Text..."
 ## According to https://www.sublimetext.com/docs/3/linux_repositories.html-
@@ -42,10 +46,10 @@ sudo apt-get install vim
 #sudo apt-get update
 #sudo apt-get install -y sublime-text
 
-BLUE "\tInstalling Atom..."
-wget "https://atom.io/download/deb" -O atom.deb
-dpkg -i atom.deb
-rm atom.deb
+#BLUE "\tInstalling Atom..."
+#wget "https://atom.io/download/deb" -O atom.deb
+#dpkg -i atom.deb
+#rm atom.deb
 
 BLUE "Installing Bless..."
 sudo apt-get install -y bless
@@ -57,10 +61,10 @@ BLUE "\tInstalling pip..."
 sudo apt-get install -y python-pip
 
 BLUE "\tInstalling python-requests..."
-pip install requests
+pip install -y requests
 
 BLUE "\tInstalling Python pwntools..."
-sudo pip install pwntools
+sudo pip install -y pwntools
 ##################################################
 ################ Networking ######################
 # Curl, nmap, wireshark
