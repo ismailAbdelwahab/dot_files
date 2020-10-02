@@ -30,8 +30,8 @@ sudo apt-get install -y git
 BLUE "Installing macchanger..."
 sudo apt-get install -y macchanger
 #####################################################
-################## Text/Hex editors #################
-# Vim, Sublime Text, Atom // Bless
+############ Text/Hex/LaTeX editors #################
+# Vim, Sublime Text, Atom // Bless // Gummi
 YELLOW " Text and Hex Editors:"
 BLUE "\tInstalling Vim"
 sudo apt-get install -y vim
@@ -51,6 +51,9 @@ sudo apt-get install -y sublime-text
 
 BLUE "Installing Bless..."
 sudo apt-get install -y bless
+
+BLUE "Installing Gummi..."
+sudo apt-get install -y gummi
 ##################################################
 ############### Python related  ##################
 # pip, requests, pwntools

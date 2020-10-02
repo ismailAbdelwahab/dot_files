@@ -17,6 +17,7 @@
       - Sublime text
       - Atom
       - Bless
+      - Gummi
   - For Python:
       - pip
       - requests
