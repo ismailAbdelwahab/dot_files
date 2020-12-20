@@ -87,7 +87,7 @@ function installNumpy(){
 }
 function installMatplotlib(){
 	BLUE "\tInstalling Python Matplotlib..."
-	sudo pip3 intall matplotlib
+	sudo pip3 install matplotlib
 }
 function installPythonRequests(){
 	BLUE "\tInstalling python-requests..."
