@@ -81,6 +81,14 @@ function installPipForPython3(){
 	BLUE "\tInstalling pip (for python3)..."
 	sudo apt-get install -y python3-pip
 }
+function installNumpy(){
+	BLUE "\tInstalling numpy..."
+	sudo pip3 install numpy
+}
+function installMatplotlib(){
+	BLUE "\tInstalling Python Matplotlib..."
+	sudo pip3 intall matplotlib
+}
 function installPythonRequests(){
 	BLUE "\tInstalling python-requests..."
 	sudo pip3 install requests
@@ -89,8 +97,11 @@ function installPwntools(){
 	BLUE "\tInstalling Python pwntools..."
 	sudo pip3 install pwntools
 }
+
 function installPythonTools(){
 	installPipForPython3
+	installNumpy
+	installMatplotlib
 	installPythonRequests
 	installPwntools
 }
@@ -128,7 +139,7 @@ installVim
 installSublimeText
 #installAtom
 installBless
-installGummi
+#installGummi
 
 # Python related installations:
 YELLOW " Pyton related instalations:"
