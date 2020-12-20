@@ -9,17 +9,20 @@
 * [Installation](#installation)
 
 # Programs that will be installed:
+Commented packages (with '#') will not be installed unless you uncomment them in the installation script.
   - Build-essential ( gcc, C code, lib, etc...)
   - Git
   - Macchanger
   - Text and Hex editors:
       - Vim
       - Sublime text
-      - Atom
+      - #Atom
       - Bless
-      - Gummi
+      - #Gummi
   - For Python:
       - pip
+      - numpy
+      - matplotlib
       - requests
       - pwntools
   - Networking tools:
