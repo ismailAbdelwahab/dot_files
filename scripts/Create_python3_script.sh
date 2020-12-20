@@ -36,10 +36,8 @@ function checkIfFileAlreadyExist(){
 function createFile(){ touch ${FILE}; chmod +x ${FILE}; }
 function fillFileContent(){
 	echo -e "#!/usr/bin/env python3
-def main():
-\tpass\n
 if __name__ == '__main__':
-\tmain()" > ${FILE}
+	pass" > ${FILE}
 }
 
 ################## Script ####################
