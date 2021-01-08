@@ -13,6 +13,7 @@ Commented packages (with '#') will not be installed unless you uncomment them in
   - Build-essential ( gcc, C code, lib, etc...)
   - Git
   - Macchanger
+  - ImageMagick (Image viewer "$display image.png")
   - Text and Hex editors:
       - Vim
       - Sublime text

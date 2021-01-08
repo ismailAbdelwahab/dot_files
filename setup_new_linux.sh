@@ -44,6 +44,10 @@ function installMacchanger(){
 	BLUE "\tInstalling macchanger..."
 	sudo apt-get install -y macchanger
 }
+function installImageMagick(){
+	BLUE "\tInstalling ImageMagick..."
+	sudo apt-get install -y imagemagick
+}
 #####################################################
 ############ Text/Hex/LaTeX editors #################
 # Vim, Sublime Text, Atom // Bless // Gummi
@@ -132,6 +136,7 @@ updateAndUpgradeRepos
 installBuildEssential
 installGit
 installMacchanger
+installImageMagick
 
 # Text editors:
 YELLOW " Text and Hex Editors:"
