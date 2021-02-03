@@ -43,6 +43,10 @@ Commented packages (with '#') will not be installed unless you uncomment them in
   - Create_bash_script.sh
 >{Will create a bash executable script, with colors function} > usage: RED "your text"
 
+  - Launch_startup_app.sh
+>{Used as a macro launch multiple softwares at the same time when i boot my machine}
+>(Discord, Spotify)
+
   - INIT_monitor_mode.sh
   - INIT_managed_mode.sh
 >{Give a wireless interface name in stdin to switch mode in monitor or managed.}
