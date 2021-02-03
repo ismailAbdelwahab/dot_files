@@ -10,10 +10,12 @@
 
 # Programs that will be installed:
 Commented packages (with '#') will not be installed unless you uncomment them in the installation script.
-  - Build-essential ( gcc, C code, lib, etc...)
-  - Git
-  - Macchanger
-  - ImageMagick (Image viewer "$display image.png")
+  - Utilities
+      - Build-essential ( gcc, C code, lib, etc...)
+      - Git
+      - Macchanger
+      - ImageMagick (Image viewer "$display image.png")
+      - tldr (show some usage examples for Unix commands)
   - Text and Hex editors:
       - Vim
       - Sublime text
@@ -30,6 +32,9 @@ Commented packages (with '#') will not be installed unless you uncomment them in
       - Nmap
       - Curl
       - Wireshark
+  - Miscellaneous:
+      - Spotify
+      - Discord
   
 # Scripts that will be added
   - Create_python3_script.sh 
