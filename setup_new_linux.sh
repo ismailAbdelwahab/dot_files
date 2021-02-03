@@ -48,6 +48,10 @@ function installImageMagick(){
 	BLUE "\tInstalling ImageMagick..."
 	sudo apt-get install -y imagemagick
 }
+function installTldr(){
+	BLUE "\tInstalling tldr ..."
+	sudo apt-get install -y tldr
+}
 #####################################################
 ############ Text/Hex/LaTeX editors #################
 # Vim, Sublime Text, Atom // Bless // Gummi
@@ -125,33 +129,48 @@ function installWireshark(){
 	sudo apt-get install -y wireshark
 }
 #################################################
-
+############## Miscellaneous #####################
+function installSpotify(){
+	BLUE "\tInstalling Spotify ..."
+	curl -sS https://download.spotify.com/debian/pubkey_0D811D58.gpg | sudo apt-key add - 
+	echo "deb http://repository.spotify.com stable non-free" | sudo tee /etc/apt/sources.list.d/spotify.list
+	sudo apt-get update -y && sudo apt-get install -y spotify-client
+}
+function installDiscord(){
+	BLEU "\tInstalling Discord ..."
+	wget -O discord.deb "https://discordapp.com/api/download?platform=linux&format=deb"
+	sudo dpkg -i discord.deb
+	rm discord.deb
+}
+############### Script ##########################
 #You need root priviledge to make these installations:
 checkRootPriviledge
 
-# Update and upgrade:
 updateAndUpgradeRepos
 
-# Utilities:
+YELLOW " ====== Utilities ====="
 installBuildEssential
 installGit
 installMacchanger
 installImageMagick
+installTldr
 
-# Text editors:
-YELLOW " Text and Hex Editors:"
+YELLOW " ====== Text and Hex Editors ====="
 installVim
 installSublimeText
 #installAtom
 installBless
 #installGummi
 
-# Python related installations:
-YELLOW " Pyton related instalations:"
+YELLOW " ====== Pyton related instalations ====="
 installPythonTools
 
-# Networking tools:
-YELLOW " Networking tools:"
+YELLOW " ===== Networking tools ======"
 installCurl
 installNmap
 installWireshark
+
+YELLOW " ===== Miscellaneous ====="
+installSpotify
+installDiscord
+
