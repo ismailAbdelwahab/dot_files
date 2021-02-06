@@ -58,15 +58,16 @@ The script will update before installing any program.
       $ sudo apt update
 
 ## For Scripts
-### A) Consult the *script/* folder: Choose which scripts you want to keep
- You can remove the scripts that you do not want, just by removing them from **scripts**.
+### A) Consult the *script/* folder: 
+All scripts inside this folder will have a symbolic link created in /usr/local/bin.
+ You can remove the scripts that you do not want, just by removing them from **scripts/**.
 
 ### B) Copying scripts and Creation of sym links for them
- **add_scripts_to_bin.sh** will copy ***all scripts left in script/*** to your folder **/home/your_user_name/Scripts**.
+ **add_scripts_to_usr-local-bin.sh** will copy ***all scripts left in script/*** to your folder **/home/your_user_name/Scripts**.
  
  ( Note : **~/Script** will be created if you do not have it yet )
 
-  Then the script will create a symbolic link in **/bin/** , for each script copied.
+  Then the script will create a symbolic link in **usr/local/bin/** , for each script copied.
   
   From now on you can use these script from anywhere on your terminal.
   
