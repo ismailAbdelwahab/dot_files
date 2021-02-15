@@ -35,6 +35,7 @@ Commented packages (with '#') will not be installed unless you uncomment them in
   - Miscellaneous:
       - Spotify
       - Discord
+      - #Obs
   
 # Scripts that will be added
   - Create_python3_script.sh 

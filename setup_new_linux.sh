@@ -142,6 +142,13 @@ function installDiscord(){
 	sudo dpkg -i discord.deb
 	rm discord.deb
 }
+function installObs(){
+	BLEU "\tInstalling OBS ..."
+	sudo apt install -y ffmpeg
+	sudo add-apt-repository ppa:obsproject/obs-studio
+	sudo apt update
+	sudo apt install -y obs-studio
+}
 ############### Script ##########################
 #You need root priviledge to make these installations:
 checkRootPriviledge
@@ -173,4 +180,4 @@ installWireshark
 YELLOW " ===== Miscellaneous ====="
 installSpotify
 installDiscord
-
+#installObs
