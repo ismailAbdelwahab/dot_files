@@ -1,0 +1,20 @@
+The actual (05/03/2021) last version of the linux kernel have some pb with 
+some graphic cards, like the Radeon RX 470 (on the main pc).
+
+The pb is the following:
+The driver (amdgpu) is downloaded, but the system don't use it:
+
+When launching "$ lspci -v" go to the section about the gpu driver:
+  You will see that line: "Kernel driver : amdgpu"
+  but you can't see the line "Driver in user: amdgpu"
+Meaning that amdgpu is not used.
+
+To solve that just change the boot option in grub:
+In the file /etc/default/grub :
+  """
+    GRUB_CMDLINE_LINUX_DEFAULT="quiet splash radeon.cik_support=1 amdgpu.cik_support=0 radeon.si_support=1 amdgpu.si_support=0 amdgpu.dc=0 amdgpu.dpm=0"
+    GRUB_CMDLINE_LINUX=""
+  """
+Then just do: "$sudo update-grub2"
+
+This will activate the use of the (amdgpu) driver by the kernel.
