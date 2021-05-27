@@ -1,0 +1,4 @@
+Install the following two package and you are good to go:
+  fonts-alee
+  firefox-l10n-ko
+(be carefull of the version for the latter)
