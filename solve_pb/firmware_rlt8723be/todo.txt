@@ -1,0 +1,4 @@
+Get 4G connexion via phone
+
+Then execute:
+  sudo apt install firmware-realtek
