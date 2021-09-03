@@ -137,7 +137,7 @@ function installSpotify(){
 	sudo apt-get update -y && sudo apt-get install -y spotify-client
 }
 function installDiscord(){
-	BLEU "\tInstalling Discord ..."
+	BLUE "\tInstalling Discord ..."
 	wget -O discord.deb "https://discordapp.com/api/download?platform=linux&format=deb"
 	sudo dpkg -i discord.deb
 	rm discord.deb
@@ -166,7 +166,7 @@ YELLOW " ====== Text and Hex Editors ====="
 installVim
 installSublimeText
 #installAtom
-installBless
+#installBless
 #installGummi
 
 YELLOW " ====== Pyton related instalations ====="
