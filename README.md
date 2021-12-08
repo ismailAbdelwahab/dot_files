@@ -16,11 +16,12 @@ Commented packages (with '#') will not be installed unless you uncomment them in
       - Macchanger
       - ImageMagick (Image viewer "$display image.png")
       - tldr (show some usage examples for Unix commands)
+      - tree
   - Text and Hex editors:
       - Vim
       - Sublime text
       - #Atom
-      - Bless
+      - #Bless
       - #Gummi
   - For Python:
       - pip
@@ -32,10 +33,15 @@ Commented packages (with '#') will not be installed unless you uncomment them in
       - Nmap
       - Curl
       - Wireshark
+  - Cybersec tools:
+      - john
+      - hashcat
   - Miscellaneous:
       - Spotify
       - Discord
       - #Obs
+      - Audacity
+      - VLC
   
 # Scripts that will be added
   - Create_python3_script.sh 
@@ -76,7 +82,7 @@ All scripts inside this folder will have a symbolic link created in /usr/local/b
 **For programmes** -- execute "setup_new_linux.sh":
        
     $ sudo ./setup_new_linux_.sh 
-Note: This script uses ***apt-get install***
+Note: This script uses ***apt install***
 
 **For scripts** -- execute : "add_scripts_to_bin.sh"
   
