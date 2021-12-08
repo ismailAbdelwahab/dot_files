@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 ################# Colors ##############################
 RED=`tput bold && tput setaf 1`
 GREEN=`tput bold && tput setaf 2`
@@ -20,7 +20,7 @@ fi
 ##############################################################
 ################## Update ###########################
 function updateAndUpgradeRepos(){
-	YELLOW "Updating repositories..."
+	YELLOW "Updating repositories ..."
 	BLUE "\tUpdating repos ..."
 	sudo apt update -y
 	BLUE "\tUpgrading ..."
@@ -33,76 +33,80 @@ function updateAndUpgradeRepos(){
 #####################################################
 ################### Utility #########################
 function installBuildEssential(){
-	BLUE "\tInstalling build-essential..."
-	sudo apt-get install -y build-essential 
+	BLUE "\tInstalling build-essential ..."
+	sudo apt install -y build-essential 
 }
 function installGit(){
-	BLUE "\tInstalling git..."
-	sudo apt-get install -y git
+	BLUE "\tInstalling Git ..."
+	sudo apt install -y git
 }
 function installMacchanger(){
-	BLUE "\tInstalling macchanger..."
-	sudo apt-get install -y macchanger
+	BLUE "\tInstalling Macchanger ..."
+	sudo apt install -y macchanger
 }
 function installImageMagick(){
-	BLUE "\tInstalling ImageMagick..."
-	sudo apt-get install -y imagemagick
+	BLUE "\tInstalling ImageMagick ..."
+	sudo apt install -y imagemagick
 }
 function installTldr(){
-	BLUE "\tInstalling tldr ..."
-	sudo apt-get install -y tldr
+	BLUE "\tInstalling Tldr ..."
+	sudo apt install -y tldr
+}
+function installTree(){
+	BLUE "\tInstalling Tree ..."
+	sudo apt install -y tree
 }
 #####################################################
 ############ Text/Hex/LaTeX editors #################
 # Vim, Sublime Text, Atom // Bless // Gummi
 function installVim(){
-	BLUE "\tInstalling Vim"
-	sudo apt-get install -y vim
+	BLUE "\tInstalling Vim ..."
+	sudo apt install -y vim
 }
 function installSublimeText(){
 ## According to https://www.sublimetext.com/docs/3/linux_repositories.html-
-	BLUE "\tInstalling Sublime Text..."
+	BLUE "\tInstalling Sublime Text ..."
 	wget -qO - https://download.sublimetext.com/sublimehq-pub.gpg | sudo apt-key add -
-	sudo apt-get install -y apt-transport-https
+	sudo apt install -y apt-transport-https
 	echo "deb https://download.sublimetext.com/ apt/stable/" | sudo tee /etc/apt/sources.list.d/sublime-text.list
-	sudo apt-get update
-	sudo apt-get install -y sublime-text
+	sudo apt update
+	sudo apt install -y sublime-text
 }
 function installAtom(){
-	BLUE "\tInstalling Atom..."
+	BLUE "\tInstalling Atom ..."
 	wget "https://atom.io/download/deb" -O atom.deb
 	dpkg -i atom.deb
 	rm atom.deb
 }
 function installBless(){
-	BLUE "\tInstalling Bless..."
-	sudo apt-get install -y bless
+	BLUE "\tInstalling Bless ..."
+	sudo apt install -y bless
 }
 function installGummi(){
-	BLUE "\tInstalling Gummi..."
-	sudo apt-get install -y gummi
+	BLUE "\tInstalling Gummi ..."
+	sudo apt install -y gummi
 }
 ##################################################
 ############### Python related  ##################
 # pip, requests, pwntools
 function installPipForPython3(){
-	BLUE "\tInstalling pip (for python3)..."
-	sudo apt-get install -y python3-pip
+	BLUE "\tInstalling pip (for python3) ..."
+	sudo apt install -y python3-pip
 }
 function installNumpy(){
-	BLUE "\tInstalling numpy..."
+	BLUE "\tInstalling numpy ..."
 	sudo pip3 install numpy
 }
 function installMatplotlib(){
-	BLUE "\tInstalling Python Matplotlib..."
+	BLUE "\tInstalling Python Matplotlib ..."
 	sudo pip3 install matplotlib
 }
 function installPythonRequests(){
-	BLUE "\tInstalling python-requests..."
+	BLUE "\tInstalling python-requests ..."
 	sudo pip3 install requests
 }
 function installPwntools(){
-	BLUE "\tInstalling Python pwntools..."
+	BLUE "\tInstalling Python pwntools ..."
 	sudo pip3 install pwntools
 }
 
@@ -117,24 +121,34 @@ function installPythonTools(){
 ################ Networking ######################
 # Curl, nmap, wireshark
 function installCurl(){
-	BLUE "\tInstalling curl..."
-	sudo apt-get install -y curl
+	BLUE "\tInstalling curl ..."
+	sudo apt install -y curl
 }
 function installNmap(){
-	BLUE "\tInstalling nmap..."
-	sudo apt-get install -y nmap
+	BLUE "\tInstalling nmap ..."
+	sudo apt install -y nmap
 }
 function installWireshark(){
-	BLUE "\tInstalling Wireshark..."
-	sudo apt-get install -y wireshark
+	BLUE "\tInstalling Wireshark ..."
+	sudo apt install -y wireshark
 }
-#################################################
+##################################################
+############# Cyber-sec tools ####################
+function installJohn(){
+	BLUE "\tInstalling John ..."
+	sudo apt install -y john john-data
+}
+function installHashcat(){
+	BLUE "\tInstalling Hashcat ..."
+	sudo apt install -y hashcat
+}
+##################################################
 ############## Miscellaneous #####################
 function installSpotify(){
 	BLUE "\tInstalling Spotify ..."
 	curl -sS https://download.spotify.com/debian/pubkey_0D811D58.gpg | sudo apt-key add - 
 	echo "deb http://repository.spotify.com stable non-free" | sudo tee /etc/apt/sources.list.d/spotify.list
-	sudo apt-get update -y && sudo apt-get install -y spotify-client
+	sudo apt update -y && sudo apt install -y spotify-client
 }
 function installDiscord(){
 	BLUE "\tInstalling Discord ..."
@@ -149,6 +163,14 @@ function installObs(){
 	sudo apt update
 	sudo apt install -y obs-studio
 }
+function installAudacity(){
+	BLEU "\tInstalling Audacity ..."
+	sudo apt install -y audacity
+}
+function installVlc(){
+	BLEU "\tInstalling Vlc ..."
+	sudo apt install -y vlc
+}
 ############### Script ##########################
 #You need root priviledge to make these installations:
 checkRootPriviledge
@@ -161,6 +183,7 @@ installGit
 installMacchanger
 installImageMagick
 installTldr
+installTree
 
 YELLOW " ====== Text and Hex Editors ====="
 installVim
@@ -177,7 +200,13 @@ installCurl
 installNmap
 installWireshark
 
+YELLOW " ===== Cybersec tools  ====="
+installJohn
+installHashcat
+
 YELLOW " ===== Miscellaneous ====="
 installSpotify
 installDiscord
 #installObs
+installAudacity
+installVlc
