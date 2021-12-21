@@ -1,0 +1,3 @@
+Simply copy the whole "i3" folder in /home/<your_user_name>/.config/ .
+
+Objective is to have /home/<your_user_name>/.config/i3/config to be used as your i3 configuration file

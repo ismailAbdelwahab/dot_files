@@ -1,0 +1,12 @@
+
+***** i3 :
+	You can install i3 and i3-gaps using the provided script next to this file.
+
+
+***** FONTS :
+	You will need to download the lastest version of these fonts on git:
+		https://github.com/FortAwesome/Font-Awesome/releases
+	And put the *.ttf files in "~/fonts/" .
+	
+	Here is a useful cheatsheet to find some symbols to use :
+		https://fontawesome.com/v5/cheatsheet/free/brands
