@@ -12,7 +12,9 @@
 set $mod Mod4
 
 # Set the folder of i3 config here (used below)
-set $CONFIG_FOLDER "/home/xis/.config/i3"
+set $CONFIG_FOLDER "$HOME/.config/i3"
+set $BACKGROUND_FOLDER "$HOME/.config/i3/backgrounds"
+set $SCRIPT_FOLDER "$HOME/.config/i3/scripts"
 
 #####################################################################################
 #                                  Setting fonts                                    #
@@ -106,6 +108,11 @@ bindsym $mod+q focus parent
 #bindsym $mod+d focus child
 
 #####################################################################################
+#                      Sticky window (stays on all workspace)                       #
+#####################################################################################
+bindsym $mod+w sticky toggle
+
+#####################################################################################
 #                              Workspaces management                                #
 #####################################################################################
 # Workspace names :
@@ -149,7 +156,10 @@ bindsym $mod+Shift+agrave move container to workspace number $ws10
 #    Start i3bar to display a workspace bar (plus the system information i3status   #
 #####################################################################################
 bar {
-        status_command i3status
+		## Default i3status : 
+        #status_command i3status
+		## Use a personal config file :
+        status_command i3status --config $CONFIG_FOLDER/bar/i3status.conf
 }
 
 #####################################################################################
@@ -211,6 +221,14 @@ gaps outer 5
 # Kill the current focused window :
 bindsym $mod+Shift+A kill
 
+# Setup brightness using brightness keys :
+bindsym XF86MonBrightnessUp exec light -A 5
+bindsym XF86MonBrightnessDown exec light -U 5
+#####################################################################################
+#                         Automatic on relaunch                                     #
+#####################################################################################
+# Set wallpaper :
+exec_always bash $SCRIPT_FOLDER/select_random_background.sh | xargs feh --bg-scale
 #####################################################################################
 #                            Launched on startup                                    #
 #   Worspace 1 : Firefox                                                            #
@@ -222,6 +240,8 @@ exec --no-startup-id i3-msg 'workspace $ws1; exec firefox'
 exec --no-startup-id i3-msg 'workspace $ws2; exec i3-sensible-terminal; exec i3-sensible-terminal'
 exec discord
 exec spotify
+# Launch compton (to get transparency settings working):
+exec --no-startup-id compton
 #####################################################################################
 #                  Make window stay on specific workspaces                          #
 #####################################################################################
@@ -243,3 +263,4 @@ bindsym Control+Mod1+f exec firefox
 # Lock window : ( Ctrl + Alt + L )
 # This will choose a random picture inside $CONFIG_FOLDER/backgrounds/*.png
 bindsym Mod1+Control+L exec echo $CONFIG_FOLDER/backgrounds/$(ls $CONFIG_FOLDER/backgrounds/ | shuf -n 1) | xargs i3lock -e -f -i
+
