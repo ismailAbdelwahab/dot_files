@@ -101,6 +101,7 @@ installPipPackage "pwntools"
 installPackage "curl"
 installPackage "nmap"
 installPackage "wireshark"
+installPackage "scapy"
 
 ############## Cybersec tools :
 installPackage "john"
