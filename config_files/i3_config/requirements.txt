@@ -17,3 +17,8 @@ Use feh ;
 	sudo apt install feh
 Use this command to set wallpaper:
 	feh --bg-scale <your wall paper>
+
+****** System appearance :
+Use lxappearance :
+	sudo apt install lxappearance
+Launch it and modify your syst as you want (with a GUI)
