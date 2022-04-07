@@ -28,10 +28,12 @@ font pango:monospace 10
 #    Start i3bar to display a workspace bar (plus the system information i3status   #
 #####################################################################################
 bar {
-		## Default i3status : 
-        #status_command i3status
-		## Use a personal config file :
-        status_command i3status --config $CONFIG_FOLDER/bar/i3status.conf
+	# Position of the bar
+	position top
+	## Default i3status : 
+	#status_command i3status
+	## Use a personal config file :
+	status_command i3status --config $CONFIG_FOLDER/bar/i3status.conf
 }
 
 #####################################################################################
@@ -232,3 +234,6 @@ exec xinput set-prop 11 "libinput Tapping Enabled" 1
 #####################################################################################
 # Set wallpaper :
 exec_always bash $SCRIPT_FOLDER/select_random_background.sh | xargs feh --bg-scale
+# Activate night shift: (5700K temperature during day and 3600K at night)
+exec_always redshift -t 5700:3600
+#exec_always redshift -O 3600
