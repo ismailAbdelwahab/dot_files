@@ -1,8 +1,4 @@
 ###### LAPTOP CONFIG FILE :
-# Should you change your keyboard layout some time, delete
-# this file and re-run i3-config-wizard(1).
-# i3 config file (v4)
-# Please see https://i3wm.org/docs/userguide.html for a complete reference!
 #####################################################################################
 #                               Setting variables                                   #
 #####################################################################################
@@ -12,7 +8,7 @@ set $mod Mod4
 set $CONFIG_FOLDER "$HOME/.config/i3"
 set $BACKGROUND_FOLDER "$HOME/.config/i3/backgrounds"
 set $SCRIPT_FOLDER "$HOME/.config/i3/scripts"
-
+set $DEFAULT_SCREENSHOT_OUTPUT_FILE "$HOME/Images/aled.png"
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 #####################################################################################
@@ -51,11 +47,6 @@ gaps outer 5
 #####################################################################################
 mode "resize" {
         # These bindings trigger as soon as you enter the resize mode
-
-        # Pressing left will shrink the window’s width.
-        # Pressing right will grow the window’s width.
-        # Pressing up will shrink the window’s height.
-        # Pressing down will grow the window’s height.
         bindsym j resize shrink width 10 px or 10 ppt
         bindsym k resize grow height 10 px or 10 ppt
         bindsym l resize shrink height 10 px or 10 ppt
@@ -78,26 +69,20 @@ bindsym $mod+r mode "resize"
 #                          Focus + window management                                #
 #####################################################################################
 # Change focus of the current window [elephant] :
-bindsym $mod+j focus left
-bindsym $mod+k focus down
-bindsym $mod+l focus up
-bindsym $mod+m focus right
-
 bindsym $mod+Left focus left
 bindsym $mod+Down focus down
 bindsym $mod+Up focus up
 bindsym $mod+Right focus right
 
 # Move window in the current workspace :
-bindsym $mod+Shift+j move left
-bindsym $mod+Shift+k move down
-bindsym $mod+Shift+l move up
-bindsym $mod+Shift+M move right
-
 bindsym $mod+Shift+Left move left
 bindsym $mod+Shift+Down move down
 bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
+
+# Move window to other monitor
+bindsym $mod+Ctrl+Right move workspace to output right
+bindsym $mod+Ctrl+Left move workspace to output left
 
 # Splitting window :
 bindsym $mod+h split h 
@@ -111,11 +96,6 @@ bindsym $mod+Shift+space floating toggle
 # Switch focus between Tiled and flotting windows :
 bindsym $mod+space focus mode_toggle
 
-# Focus the parent container :
-bindsym $mod+q focus parent
-# Focus the child container :
-#bindsym $mod+d focus child
-
 #####################################################################################
 #                              Workspaces management                                #
 #####################################################################################
@@ -127,7 +107,7 @@ set $ws4 "4"
 set $ws5 "5"
 set $ws6 "6"
 set $ws7 "7"
-set $ws8 "8"
+set $ws8 "8: Webex"
 set $ws9 "9: Discord "
 set $ws10 "10: Spotify "
 
@@ -186,6 +166,14 @@ bindsym $mod+Shift+A kill
 ###### Sticky window (stays on all workspace)
 bindsym $mod+w sticky toggle
 
+###### Screenshots
+bindsym Ctrl+Shift+Print exec --no-startup-id maim $DEFAULT_SCREENSHOT_OUTPUT_FILE
+bindsym Ctrl+Print exec --no-startup-id maim --select $DEFAULT_SCREENSHOT_OUTPUT_FILE 
+
+bindsym Shift+Print exec --no-startup-id maim | xclip -selection clipboard -t image/png
+#bindsym Ctrl+$mod+Print exec --no-startup-id maim --window $(xdotool getactivewindow) | xclip -selection clipboard -t image/png
+bindsym Print exec --no-startup-id maim --select | xclip -selection clipboard -t image/png
+
 ###################### Starting an application:
 # There also is the (new) i3-dmenu-desktop which only displays applications
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
@@ -229,11 +217,11 @@ exec --no-startup-id compton
 	# of my device on the output of the command "xinput"
 exec xinput set-prop 11 "libinput Tapping Enabled" 1
 
+# Activate night shift: (5700K temperature during day and 3600K at night)
+exec redshift -t 5700:3600
+
 #####################################################################################
 #                         Automatic on relaunch                                     #
 #####################################################################################
 # Set wallpaper :
 exec_always bash $SCRIPT_FOLDER/select_random_background.sh | xargs feh --bg-scale
-# Activate night shift: (5700K temperature during day and 3600K at night)
-exec_always redshift -t 5700:3600
-#exec_always redshift -O 3600

@@ -1,18 +1,15 @@
 #!/bin/sh
 
-# Install i3:
-sudo apt install -y i3
-
-# Install i3-gaps:
+# Install i3 and i3-gaps:
 sudo add-apt-repository ppa:regolith-linux/release
 sudo apt update -y
-sudo apt install -y i3-gaps
+sudo apt install i3 i3-gaps -y
 
-# compton
-sudo apt install compton
+# Install compton (Terminal transparency)
+sudo apt install compton -y
 
-# feh
-sudo apt install feh
+# Install feh (Change wallpaper)
+sudo apt install feh -y
 
-# lxappearance
-sudo apt install lxappearance
+# Install lxappearance (Change font used by the system)
+sudo apt install lxappearance -y

@@ -1,3 +1,7 @@
-Simply copy the whole "i3" folder in /home/<your_user_name>/.config/ .
+	Copy the whole "i3/" folder in /home/<your_user_name>/.config/
+cp -r i3/ ~/.config/
 
-Objective is to have /home/<your_user_name>/.config/i3/config to be used as your i3 configuration file
+	Todo : Import fonts
+1) Download Awsome font : https://github.com/FortAwesome/Font-Awesome/releases
+2) Put all the *.ttf file in "~/.fonts/"
+3) Use this cheat sheet to find emotes : https://fontawesome.com/v5/cheatsheet
