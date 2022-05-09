@@ -1,7 +1,0 @@
-	Copy the whole "i3/" folder in /home/<your_user_name>/.config/
-cp -r i3/ ~/.config/
-
-	Todo : Import fonts
-1) Download Awsome font : https://github.com/FortAwesome/Font-Awesome/releases
-2) Put all the *.ttf file in "~/.fonts/"
-3) Use this cheat sheet to find emotes : https://fontawesome.com/v5/cheatsheet

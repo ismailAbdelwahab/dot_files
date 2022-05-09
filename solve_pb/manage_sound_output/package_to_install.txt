@@ -1,7 +1,0 @@
-Install pavucontrol-qt:
-  $ sudo apt install pavucontrol-qt
-
-This software will allow you to change the output of a window to
-a specific output device (headset / monitor A / monitor B ...)
-
-Really usefull to record stuff with OBS.

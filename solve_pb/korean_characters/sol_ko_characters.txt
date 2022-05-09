@@ -1,4 +1,0 @@
-Install the following package and you are good to go:
-  fonts-lexi-saebom
-  
- This will enable the system to print hangul characters.

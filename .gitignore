@@ -1,2 +1,6 @@
+# Backups
 BACKUPS/
 *.BAK
+
+# i3
+i3/backgrounds/*.png
