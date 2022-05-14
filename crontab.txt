@@ -17,10 +17,4 @@ DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus
 # Handle my Obsidian vaults:
 #
 # Obsidian vault backup (Once per day)
-0 20 * * * zip -r -9 /home/xis/.backups/ObsidianVaults.zip /home/xis/ObsidianVaults; echo -e "[BACKUP] Generated zip file in .backups/. ($(date))\n\n\n" >> /tmp/OBSIDIAN_AUTOMATIC_ACTIVITIES.log
-
-# Push obsidian changes (Every 30 min)
-*/30 * * * * cd /home/xis/ObsidianVaults; ./push_to_git.sh 2>&1 >> /tmp/OBSIDIAN_AUTOMATIC_ACTIVITIES.log; echo -e "Last automatic push done at : \n\t$(date)\n==========\n\n" >> /tmp/OBSIDIAN_AUTOMATIC_ACTIVITIES.log
-
-# Pull Obsidian changes (at reboot)
-@reboot sleep 10; git -C /home/xis/ObsidianVaults pull 2>&1 >> /tmp/OBSIDIAN_AUTOMATIC_ACTIVITIES.log; echo -e "Last automatic pull (at rebbot) done at : \n\t$(date)\n==========\n\n" >> /tmp/OBSIDIAN_AUTOMATIC_ACTIVITIES.log
+0,30 * * * * zip -r -9 /home/xis/.backups/ObsidianVaults.zip /home/xis/ObsidianVaults; echo -e "[BACKUP] ($(date -u +"%d-%m-%Y at %H:%M:%S")) - Generate in ~/.backups/\n\n" >> /tmp/OBSIDIAN_AUTOMATIC_ACTIVITIES.log
