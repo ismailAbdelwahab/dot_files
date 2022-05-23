@@ -4,14 +4,17 @@
 #####################################################################################
 set $mod Mod4
 
-# Set the folder of i3 config here (used below)
+	# Set variables refering to folders
 set $CONFIG_FOLDER "$HOME/.config/i3"
 set $BACKGROUND_FOLDER "$HOME/.config/i3/backgrounds"
 set $SCRIPT_FOLDER "$HOME/.config/i3/scripts"
 set $DEFAULT_SCREENSHOT_OUTPUT_FILE "$HOME/Images/aled.png"
+	# Choose the default terminal to use:
 set $USED_TERMINAL "i3-sensible-terminal"
-# Use Mouse+$mod to drag floating windows to their wanted position
+#set $USED_TERMINAL "alacritty"
+	# Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
+
 #####################################################################################
 #                           Setting fonts + size                                    #
 #####################################################################################

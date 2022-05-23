@@ -17,4 +17,5 @@ DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus
 # Handle my Obsidian vaults:
 #
 # Obsidian vault backup (Once per day)
-0,30 * * * * zip -r -9 /home/xis/.backups/ObsidianVaults.zip /home/xis/ObsidianVaults; echo -e "[BACKUP] ($(date -u +"%d-%m-%Y at %H:%M:%S")) - Generate in ~/.backups/\n\n" >> /tmp/OBSIDIAN_AUTOMATIC_ACTIVITIES.log
+0,30 * * * * zip -r -9 /home/xis/.backups/ObsidianVaults.zip /home/xis/ObsidianVaults
+

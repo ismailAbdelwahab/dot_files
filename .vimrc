@@ -1,3 +1,6 @@
+" Activate powerline-vim
+set laststatus=2
+
 " Disable vi compatibility
 set nocompatible
 
