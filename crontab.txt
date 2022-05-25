@@ -11,11 +11,9 @@ DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus
 #
 # Battery management
 #
-*/5 * * * * /usr/local/bin/CHECK_BATTERY_INFO.sh
-
+*/10 * * * * /usr/local/bin/CHECK_BATTERY_INFO.sh
 #
 # Handle my Obsidian vaults:
 #
 # Obsidian vault backup (Once per day)
-0,30 * * * * zip -r -9 /home/xis/.backups/ObsidianVaults.zip /home/xis/ObsidianVaults
-
+0,30 * * * * git -C ${HOME}/ObsidianVaults/ archive  --format zip --output $HOME/.backups/ObsidianVaults.zip master

@@ -1,0 +1,29 @@
+# Common commands
+	# cd
+alias ..="cd .."
+alias ...="cd ../.."
+alias ....="cd ../../.."
+alias .....="cd ../../../.."
+alias dl="cd ~/Downloads"
+	# ls
+alias ls="ls --color=auto"
+alias ll="ls -lh"
+alias la="ls -lhA"
+alias l="ls -CF"
+		# Add flags to existing aliases.$
+		#alias ls="${aliases[ls]:-ls} -A"
+	# clear
+alias c="clear"
+	# grep
+alias grep="grep --color=auto"
+alias egrep="egrep --color=auto"
+alias fgrep="fgrep --color=auto"
+	#crontab
+alias crontab="EDITOR=\"vim\" crontab"
+# tree
+alias tree="tree -a -I .git"
+
+# git
+alias g="git"
+alias gstatus="git status"
+alias gpull="git pull"

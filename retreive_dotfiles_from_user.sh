@@ -1,10 +1,10 @@
 #!/bin/bash
 
 #### Copy dotfiles
-dotfiles=("$HOME/.bashrc" "$HOME/.bash_aliases" "$HOME/.vimrc" "$HOME/.config/i3")
+dotfiles=(".bashrc" ".aliases" ".zshrc" ".vimrc" ".config/i3" ".gitconfig" )
 
 for dotfile in ${dotfiles[@]} ; do
-	yes | cp -r ${dotfile} .
+	yes | cp -r $HOME/${dotfile} .
 done
 
 #### Copy crontab

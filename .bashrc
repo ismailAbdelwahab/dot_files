@@ -8,8 +8,8 @@ fi
 
 # Setup PS1
 	# User
-PS1="[\e[44m\u\e[m] - "		# User
-PS1+="{\w} -"				# CWD
+PS1="\e[44m[\u]\e[m - "		# User
+PS1+="{\w} - "				# CWD
 PS1+="[\A]"					# Time
 PS1+="\n\$ "				# Newline and root print
 

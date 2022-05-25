@@ -106,7 +106,7 @@ set $ws6 "6 "
 set $ws7 "7 "
 set $ws8 "8: Webex"
 set $ws9 "9 "
-set $ws10 "10 "
+set $ws10 "10 "
 
 # Switch to Workspace :
 bindsym $mod+1 workspace number $ws1
