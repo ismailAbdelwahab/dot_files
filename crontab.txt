@@ -11,7 +11,7 @@ DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus
 #
 # Battery management
 #
-*/10 * * * * /usr/local/bin/CHECK_BATTERY_INFO.sh
+*/15 * * * * /usr/local/bin/CHECK_BATTERY_INFO.sh
 #
 # Handle my Obsidian vaults:
 #

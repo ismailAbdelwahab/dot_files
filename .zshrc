@@ -105,7 +105,7 @@ setopt no_auto_menu  # require an extra TAB press to open the completion menu
 # Export editor
 EDITOR="vim"
 # Enable vi mode
-bindkey -v
+#bindkey -v
 
 # Personal aliases
 source $HOME/.aliases
