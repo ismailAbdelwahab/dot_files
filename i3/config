@@ -165,8 +165,8 @@ bindsym $mod+w sticky toggle
 bindsym Ctrl+Shift+Print exec --no-startup-id maim $DEFAULT_SCREENSHOT_OUTPUT_FILE
 bindsym Ctrl+Print exec --no-startup-id maim --select $DEFAULT_SCREENSHOT_OUTPUT_FILE 
 
-bindsym Shift+Print exec --no-startup-id maim | xclip -selection clipboard -t image/jpg
-bindsym Print exec --no-startup-id maim --select | xclip -selection clipboard -t image/jpg
+bindsym Shift+Print exec --no-startup-id maim | xclip -selection clipboard -t image/png
+bindsym Print exec --no-startup-id maim --select | xclip -selection clipboard -t image/png
 
 ###################### Starting an application:
 # There also is the (new) i3-dmenu-desktop which only displays applications
@@ -192,11 +192,12 @@ bindsym Mod1+Control+L exec echo $CONFIG_FOLDER/backgrounds/$(ls $CONFIG_FOLDER/
 #   Worspace 10: Obsidian                                                           #
 #####################################################################################
 exec --no-startup-id SCREEN_SETUP.sh
+exec --no-startup-id blueman-applet
 exec --no-startup-id discord
 exec --no-startup-id spotify
+exec --no-startup-id i3-msg 'workspace $ws10; exec obsidian'
 exec --no-startup-id i3-msg 'workspace $ws1; exec firefox'
 exec --no-startup-id i3-msg 'workspace $ws2; exec $USED_TERMINAL; exec $USED_TERMINAL'
-exec --no-startup-id i3-msg 'workspace $ws10; exec obsidian'
 
 # xss-lock grabs a logind suspend inhibit lock and will use i3lock to lock the
 # screen before suspend. Use loginctl lock-session to lock your screen.

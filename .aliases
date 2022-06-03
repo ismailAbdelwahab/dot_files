@@ -27,3 +27,6 @@ alias tree="tree -a -I .git"
 alias g="git"
 alias gstatus="git status"
 alias gpull="git pull"
+
+#Docker
+alias d="docker"
