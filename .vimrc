@@ -7,14 +7,14 @@ set nocompatible
 " =========== General =============
 filetype on
 syntax on
-set nu
+set nu rnu
 set wildmenu " Better command completion
 set list
 set title 
 
 " =========== Cursor gestion ======= 
 set mouse=a
-set cursorline		" Add line on the current cursor's line
+"set cursorline		" Add line on the current cursor's line
 "set cursorcolumn 	" Add the cursor column
 set ruler
 

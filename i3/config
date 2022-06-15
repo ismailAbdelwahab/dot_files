@@ -10,7 +10,7 @@ set $SCRIPT_FOLDER "$HOME/.config/i3/scripts"
 set $DEFAULT_SCREENSHOT_OUTPUT_FILE "$HOME/Images/aled.jpg"
 	# Set the default commands to launch default apps
 set $USED_TERMINAL "i3-sensible-terminal"
-set $USED_BROWSER "brave"
+set $USED_BROWSER "firefox"
 #####################################################################################
 #                           Setting fonts + size + Appearance                       #
 #####################################################################################

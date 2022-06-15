@@ -21,7 +21,7 @@ alias fgrep="fgrep --color=auto"
 	#crontab
 alias crontab="EDITOR=\"vim\" crontab"
 # tree
-alias tree="tree -a -I .git"
+alias tree="tree -I .git"
 
 # git
 alias g="git"
