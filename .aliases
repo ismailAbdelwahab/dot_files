@@ -28,5 +28,8 @@ alias g="git"
 alias gstatus="git status"
 alias gpull="git pull"
 
-#Docker
+# Docker
 alias d="docker"
+
+# Make
+alias m="make"
