@@ -15,7 +15,18 @@ set $USED_BROWSER "firefox"
 #                           Setting fonts + size + Appearance                       #
 #####################################################################################
 font pango:Hack 12
+
+# Handle window borders
+for_window [class="^.*"] border pixel 5
 title_align center
+# class                 border  backgr. text    indicator child_border
+client.focused          #4c7899 #285577 #ffffff #2e9ef4   #00ff00
+client.focused_inactive #333333 #5f676a #ffffff #484e50   #002200
+client.unfocused        #333333 #222222 #888888 #292d2e   #000055
+client.urgent           #2f343a #900000 #ffffff #900000   #ff0000
+client.placeholder      #000000 #0c0c0c #ffffff #000000   #0c0c0c
+
+client.background       #ffffff
 #####################################################################################
 #                                     i3 Bar                                        #
 #    Start i3bar to display a workspace bar (plus the system information i3status   #
@@ -24,21 +35,19 @@ bar {
 	position top
 	#status_command i3status --config $CONFIG_FOLDER/bar/i3status.conf
 	status_command bumblebee-status -t dracula-powerline \
-	-m libvirtvms \
 	-m pacman -p pacman.sum="true"\
-	-m pomodoro -p pomodoro.notify="notify-send 'Time up!'" \
+	-m libvirtvms \
 -m spacer\
 	-m network_traffic \
 	-m disk -p  disk.format="{used}" \
--m spacer \
+	-m memory -p memory.format="{percent:.0f}%" \
 	-m cpu -m sensors -p sensors.show_freq="false" \
-	-m memory -p memory.format="{percent:05.02f}%" \
--m spacer\
-	-m pasink \
 	-m battery  \
-	-m datetime -p datetime.format="%d/%m/%y %H:%M"
+	-m pasink \
+	-m datetime -p datetime.format="%H:%M %d/%m/%y"
 	#-m shortcut -p shortcut.cmds="pavucontrol" shortcut.labels="pavu"\
-	}
+	#-m pomodoro -p pomodoro.notify="notify-send 'Time up!'" \
+}
 #####################################################################################
 #                                      Gaps                                         #
 #####################################################################################
@@ -97,16 +106,16 @@ bindsym $mod+space focus mode_toggle
 #                              Workspaces management                                #
 #####################################################################################
 # Workspace names :
-set $ws1 "1 "
-set $ws2 "2 "
-set $ws3 "3: Work 🔨"
-set $ws4 "4: Temp 🕓"
+set $ws1 "1"
+set $ws2 "2"
+set $ws3 "3🔨"
+set $ws4 "4"
 set $ws5 "5"
-set $ws6 "6 "
-set $ws7 "7 "
-set $ws8 "8: Webex"
-set $ws9 "9 "
-set $ws10 "10 "
+set $ws6 "6"
+set $ws7 "7"
+set $ws8 "8"
+set $ws9 "9"
+set $ws10 "10"
 
 # Switch to Workspace :
 bindsym $mod+1 workspace number $ws1
@@ -168,21 +177,21 @@ bindsym Ctrl+Shift+Print exec --no-startup-id maim $DEFAULT_SCREENSHOT_OUTPUT_FI
 
 ###################### Starting an application:
 ###### Start Application laucher : ( Mod + d ) - [dmenu]
-bindsym $mod+d exec dmenu_run -fn "Hack 14"
+bindsym $mod+d exec --no-startup-id dmenu_run -fn "Hack 14"
 ###### Start terminal: ( Mod + Enter )
 bindsym $mod+Return exec $USED_TERMINAL
 ###### Start browser : ( CTRL + Shitf + F )
 bindsym Control+Mod1+f exec $USED_BROWSER
 # Lock laptop : ( Ctrl + Alt + L )
 #	This will choose a random picture inside $CONFIG_FOLDER/backgrounds/*.png
-bindsym Mod1+Control+L exec echo $CONFIG_FOLDER/backgrounds/$(ls $CONFIG_FOLDER/backgrounds/ | shuf -n 1) | xargs i3lock -e -f -i
+bindsym Mod1+Control+L exec --no-startup-id echo $CONFIG_FOLDER/backgrounds/$(ls $CONFIG_FOLDER/backgrounds/ | shuf -n 1) | xargs i3lock -e -f -i
 
 #####################################################################################
 #                  Make window stay on specific workspaces                          #
 #####################################################################################
+assign [class="obsidian"] $ws3
 for_window [class="Spotify"] move to workspace $ws6
 assign [class="discord"] $ws9
-assign [class="obsidian"] $ws10
 
 #####################################################################################
 #                               Startup config                                      #
@@ -193,11 +202,11 @@ assign [class="obsidian"] $ws10
 #   Worspace 10: Obsidian                                                           #
 #####################################################################################
 exec --no-startup-id SCREEN_SETUP.sh
-exec --no-startup-id discord
-exec --no-startup-id spotify
-exec --no-startup-id obsidian
 exec --no-startup-id i3-msg 'workspace $ws1; exec $USED_BROWSER'
 exec --no-startup-id i3-msg 'workspace $ws2; exec $USED_TERMINAL; exec $USED_TERMINAL'
+exec --no-startup-id obsidian
+exec --no-startup-id spotify
+exec --no-startup-id discord
 
 # xss-lock grabs a logind suspend inhibit lock and will use i3lock to lock the screen before suspend. Use loginctl lock-session to lock your screen.
 exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
@@ -210,13 +219,15 @@ exec_always --no-startup-id blueman-applet
 exec --no-startup-id compton
 
 # Make the "touch to click" option ENABLE for mousepad :
-exec xinput set-prop "DLL0945:00 06CB:76B1 Touchpad" "libinput Tapping Enabled" 1
+exec --no-startup-id xinput set-prop "DLL0945:00 06CB:76B1 Touchpad" "libinput Tapping Enabled" 1
 
 # Activate night shift: (5700K temperature during day and 3600K at night)
-exec redshift -t 5700:3600
+exec --no-startup-id redshift -t 5700:3600
 
+# Use the HEADSET MIC by default:
+exec --no-startup-id pacmd set-source-port alsa_input.pci-0000_00_1f.3.analog-stereo analog-input-headset-mic
 #####################################################################################
 #                         Automatic on relaunch                                     #
 #####################################################################################
 # Set wallpaper :
-exec_always bash $SCRIPT_FOLDER/select_random_background.sh | xargs feh --bg-fill
+exec_always --no-startup-id bash $SCRIPT_FOLDER/select_random_background.sh | xargs feh --bg-fill
