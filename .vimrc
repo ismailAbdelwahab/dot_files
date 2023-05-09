@@ -32,3 +32,8 @@ set shiftwidth=4		" Tabs appears with length = 4
 
 " =========== Command line =========
 set cmdheight=2			" Set command height to 2 lines
+
+" ============ Folding =============
+set foldmethod=indent
+set foldlevel=1
+set foldclose=all

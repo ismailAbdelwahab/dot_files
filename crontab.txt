@@ -1,7 +1,7 @@
 ####################
 #      Env vars    #
 ####################
-DISPLAY=:0.0
+DISPLAY=:0
 XAUTHORITY=/home/xis/.Xauthority
 DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus
 
@@ -10,10 +10,7 @@ DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus
 ####################
 #
 # Battery management
-#
-*/15 * * * * /usr/local/bin/CHECK_BATTERY_INFO.sh
-#
-# Handle my Obsidian vaults:
-#
-# Obsidian vault backup (Once per day)
-0,30 * * * * git -C ${HOME}/ObsidianVaults/ archive  --format zip --output $HOME/.BACKUPS/ObsidianVaults.zip master
+*/5 * * * * /usr/local/bin/CHECK_BATTERY_INFO.sh
+
+# Obsidian vault backup
+0,30 * * * * /usr/bin/git -C ${HOME}/Documents/ObsidianVaults/ archive  --format zip --output $HOME/.BACKUPS/ObsidianVaults.zip master

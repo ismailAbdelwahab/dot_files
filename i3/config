@@ -14,7 +14,7 @@ set $USED_BROWSER "firefox"
 #####################################################################################
 #                           Setting fonts + size + Appearance                       #
 #####################################################################################
-font pango:Hack 12
+font pango:Hack 14
 
 # Handle window borders
 for_window [class="^.*"] border pixel 5
@@ -53,12 +53,34 @@ bar {
 #####################################################################################
 smart_gaps on
 smart_gaps inverse_outer
-gaps inner 10
+gaps inner 5
 gaps outer 3
 
 #####################################################################################
 #                                    Modes                                          #
 #####################################################################################
+######## Power management mode
+set $Locker "echo $HOME/.config/i3/backgrounds/$(ls $HOME/.config/i3/backgrounds/ | shuf -n 1) | xargs i3lock -e -f -i && sleep 1"
+set $mode_system Lock (l) |-| Suspend (s) |-| Hibernate (h) |-| Logout (Shift+e) |-| Reboot (Shift+r) |-| Shutdown (Shift+s)
+mode "$mode_system" {
+	# Lock
+	bindsym l exec --no-startup-id $Locker, mode "default"
+	# Suspend
+	bindsym s exec --no-startup-id "echo $HOME/.config/i3/backgrounds/$(ls $HOME/.config/i3/backgrounds/ | shuf -n 1) | xargs i3lock -e -f -i && sleep 1 && systemctl suspend", mode "default"
+	# Hibernate
+	bindsym h exec --no-startup-id "echo $HOME/.config/i3/backgrounds/$(ls $HOME/.config/i3/backgrounds/ | shuf -n 1) | xargs i3lock -e -f -i && sleep 1 && systemctl hibernate", mode "default"
+	bindsym Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
+	bindsym Shift+r exec "i3-nagbar -m 'Do you want to REBOOT your system ?' -B 'Yes, reboot' 'systemctl reboot'"
+	bindsym Shift+s exec "i3-nagbar -m 'Do you want to SHUTDOWN your system ?' -B 'Yes, shutdown' 'systemctl poweroff'"
+
+	# back to normal: Enter or Escape
+	bindsym Return mode "default"
+	bindsym Escape mode "default"
+	bindsym $mod+l mode "default"
+}
+bindsym $mod+l mode "$mode_system"
+
+######### Resize mode
 mode "resize" {
         bindsym Left resize shrink width 10 px or 10 ppt
         bindsym Down resize grow height 10 px or 10 ppt
@@ -108,14 +130,14 @@ bindsym $mod+space focus mode_toggle
 # Workspace names :
 set $ws1 "1"
 set $ws2 "2"
-set $ws3 "3🔨"
-set $ws4 "4"
+set $ws3 "3"
+set $ws4 "4🔨"
 set $ws5 "5"
-set $ws6 "6"
-set $ws7 "7"
+set $ws6 "6"
+set $ws7 "7"
 set $ws8 "8"
 set $ws9 "9"
-set $ws10 "10"
+set $ws10 "10"
 
 # Switch to Workspace :
 bindsym $mod+1 workspace number $ws1
@@ -141,13 +163,23 @@ bindsym $mod+Shift+8 move container to workspace number $ws8
 bindsym $mod+Shift+ccedilla move container to workspace number $ws9
 bindsym $mod+Shift+agrave move container to workspace number $ws10
 
+# Default output for workspaces:
+workspace $ws1 output DP-3-1
+workspace $ws2 output DP-3-1
+workspace $ws3 output DP-3-3
+
+workspace $ws9 output DP-3-2
+
+# Using scatchpad :
+bindsym $mod+Shift+p move scratchpad
+bindsym $mod+p scratchpad show
 #####################################################################################
 #                           Keyboard Shortcuts                                      #
 #####################################################################################
 ##### Reload / Restart / Exit i3
 bindsym $mod+Shift+c reload
 bindsym $mod+Shift+r restart
-bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
+
 ##### Stack / Tabbed / Toggle windows split modes
 bindsym $mod+s layout stacking
 bindsym $mod+z layout tabbed
@@ -170,7 +202,8 @@ bindsym $mod+Shift+A kill
 bindsym $mod+w sticky toggle
 
 ###### Screenshots
-bindsym Print exec --no-startup-id maim --select | xclip -selection clipboard -t image/png
+bindsym Print exec --no-startup-id flameshot gui
+#bindsym Print exec --no-startup-id maim --select | xclip -selection clipboard -t image/png
 bindsym Shift+Print exec --no-startup-id maim | xclip -selection clipboard -t image/png
 bindsym Ctrl+Print exec --no-startup-id maim --select $DEFAULT_SCREENSHOT_OUTPUT_FILE 
 bindsym Ctrl+Shift+Print exec --no-startup-id maim $DEFAULT_SCREENSHOT_OUTPUT_FILE
@@ -182,52 +215,48 @@ bindsym $mod+d exec --no-startup-id dmenu_run -fn "Hack 14"
 bindsym $mod+Return exec $USED_TERMINAL
 ###### Start browser : ( CTRL + Shitf + F )
 bindsym Control+Mod1+f exec $USED_BROWSER
-# Lock laptop : ( Ctrl + Alt + L )
-#	This will choose a random picture inside $CONFIG_FOLDER/backgrounds/*.png
-bindsym Mod1+Control+L exec --no-startup-id echo $CONFIG_FOLDER/backgrounds/$(ls $CONFIG_FOLDER/backgrounds/ | shuf -n 1) | xargs i3lock -e -f -i
 
 #####################################################################################
 #                  Make window stay on specific workspaces                          #
 #####################################################################################
 assign [class="obsidian"] $ws3
-for_window [class="Spotify"] move to workspace $ws6
 assign [class="discord"] $ws9
 
 #####################################################################################
 #                               Startup config                                      #
 #   Worspace 1 : Browser                                                            #
 #   Worspace 2 : 2 Terminals                                                        #
-#   Worspace 6 : Spotify                                                            #
+#   Worspace 3 : Obsidian                                                            #
+#   Worspace 6 : Music/Video                                                        #
 #   Worspace 9 : Discord                                                            #
-#   Worspace 10: Obsidian                                                           #
 #####################################################################################
-exec --no-startup-id SCREEN_SETUP.sh
+#exec --no-startup-id /usr/local/bin/SCREEN_SETUP.sh
+exec --no-startup-id $HOME/.screenlayout/desk_setup.sh
 exec --no-startup-id i3-msg 'workspace $ws1; exec $USED_BROWSER'
 exec --no-startup-id i3-msg 'workspace $ws2; exec $USED_TERMINAL; exec $USED_TERMINAL'
 exec --no-startup-id obsidian
-exec --no-startup-id spotify
 exec --no-startup-id discord
 
 # xss-lock grabs a logind suspend inhibit lock and will use i3lock to lock the screen before suspend. Use loginctl lock-session to lock your screen.
 exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 
 # Applets : Network, Bluetooth
-exec_always --no-startup-id nm-applet
-exec_always --no-startup-id blueman-applet
+exec --no-startup-id nm-applet
+exec --no-startup-id blueman-applet
 
 # Launch compton (to get transparency settings working):
 exec --no-startup-id compton
-
-# Make the "touch to click" option ENABLE for mousepad :
-exec --no-startup-id xinput set-prop "DLL0945:00 06CB:76B1 Touchpad" "libinput Tapping Enabled" 1
 
 # Activate night shift: (5700K temperature during day and 3600K at night)
 exec --no-startup-id redshift -t 5700:3600
 
 # Use the HEADSET MIC by default:
 exec --no-startup-id pacmd set-source-port alsa_input.pci-0000_00_1f.3.analog-stereo analog-input-headset-mic
+
 #####################################################################################
 #                         Automatic on relaunch                                     #
 #####################################################################################
 # Set wallpaper :
 exec_always --no-startup-id bash $SCRIPT_FOLDER/select_random_background.sh | xargs feh --bg-fill
+# Make the "touch to click" option ENABLE for mousepad :
+exec_always --no-startup-id xinput set-prop "DLL0945:00 06CB:76B1 Touchpad" "libinput Tapping Enabled" 1
