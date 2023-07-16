@@ -6,7 +6,7 @@ set $mod Mod4
 	# Set variables refering to folders
 set $CONFIG_FOLDER "$HOME/.config/i3"
 set $BACKGROUND_FOLDER "$HOME/.config/i3/backgrounds"
-set $SCRIPT_FOLDER "$HOME/.config/i3/scripts"
+set $SCRIPT_FOLDER "/home/xis/.config/i3/scripts"
 set $DEFAULT_SCREENSHOT_OUTPUT_FILE "$HOME/Images/aled.jpg"
 	# Set the default commands to launch default apps
 set $USED_TERMINAL "i3-sensible-terminal"
@@ -14,19 +14,21 @@ set $USED_BROWSER "firefox"
 #####################################################################################
 #                           Setting fonts + size + Appearance                       #
 #####################################################################################
-font pango:Hack 14
+font pango:Hack 10
 
 # Handle window borders
 for_window [class="^.*"] border pixel 5
+
 title_align center
 # class                 border  backgr. text    indicator child_border
-client.focused          #4c7899 #285577 #ffffff #2e9ef4   #00ff00
+client.focused          #4c7899 #285577 #ffffff #2e9ef4   #00FF00
 client.focused_inactive #333333 #5f676a #ffffff #484e50   #002200
 client.unfocused        #333333 #222222 #888888 #292d2e   #000055
 client.urgent           #2f343a #900000 #ffffff #900000   #ff0000
 client.placeholder      #000000 #0c0c0c #ffffff #000000   #0c0c0c
 
 client.background       #ffffff
+
 #####################################################################################
 #                                     i3 Bar                                        #
 #    Start i3bar to display a workspace bar (plus the system information i3status   #
@@ -53,18 +55,15 @@ bar {
 #####################################################################################
 smart_gaps on
 smart_gaps inverse_outer
-gaps inner 5
-gaps outer 3
+gaps inner 10
+gaps outer 5
 
 #####################################################################################
 #                                    Modes                                          #
 #####################################################################################
 ######## Power management mode
-set $Locker "echo $HOME/.config/i3/backgrounds/$(ls $HOME/.config/i3/backgrounds/ | shuf -n 1) | xargs i3lock -e -f -i && sleep 1"
-set $mode_system Lock (l) |-| Suspend (s) |-| Hibernate (h) |-| Logout (Shift+e) |-| Reboot (Shift+r) |-| Shutdown (Shift+s)
+set $mode_system Suspend (s) // Hibernate (h) // Logout (Shift+e) // Reboot (Shift+r) // Shutdown (Shift+s)
 mode "$mode_system" {
-	# Lock
-	bindsym l exec --no-startup-id $Locker, mode "default"
 	# Suspend
 	bindsym s exec --no-startup-id "echo $HOME/.config/i3/backgrounds/$(ls $HOME/.config/i3/backgrounds/ | shuf -n 1) | xargs i3lock -e -f -i && sleep 1 && systemctl suspend", mode "default"
 	# Hibernate
@@ -78,7 +77,9 @@ mode "$mode_system" {
 	bindsym Escape mode "default"
 	bindsym $mod+l mode "default"
 }
-bindsym $mod+l mode "$mode_system"
+bindsym $mod+Shift+l mode "$mode_system"
+# Lock
+bindsym $mod+l exec --no-startup-id "echo $HOME/.config/i3/backgrounds/$(ls $HOME/.config/i3/backgrounds/ | shuf -n 1) | xargs i3lock -e -f -t -i && sleep 1", mode "default"
 
 ######### Resize mode
 mode "resize" {
@@ -210,7 +211,8 @@ bindsym Ctrl+Shift+Print exec --no-startup-id maim $DEFAULT_SCREENSHOT_OUTPUT_FI
 
 ###################### Starting an application:
 ###### Start Application laucher : ( Mod + d ) - [dmenu]
-bindsym $mod+d exec --no-startup-id dmenu_run -fn "Hack 14"
+#bindsym $mod+d exec --no-startup-id dmenu_run -fn "Hack 14"
+bindsym $mod+d exec --no-startup-id rofi -config "/home/xis/.config/rofi/config.rasi" -show drun 
 ###### Start terminal: ( Mod + Enter )
 bindsym $mod+Return exec $USED_TERMINAL
 ###### Start browser : ( CTRL + Shitf + F )
@@ -226,7 +228,7 @@ assign [class="discord"] $ws9
 #                               Startup config                                      #
 #   Worspace 1 : Browser                                                            #
 #   Worspace 2 : 2 Terminals                                                        #
-#   Worspace 3 : Obsidian                                                            #
+#   Worspace 3 : Obsidian                                                           #
 #   Worspace 6 : Music/Video                                                        #
 #   Worspace 9 : Discord                                                            #
 #####################################################################################
@@ -244,8 +246,10 @@ exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 exec --no-startup-id nm-applet
 exec --no-startup-id blueman-applet
 
+### Composite manager :
 # Launch compton (to get transparency settings working):
-exec --no-startup-id compton
+#exec --no-startup-id compton -f
+exec_always --no-startup-id picom --config $HOME/.config/picom/picom.conf
 
 # Activate night shift: (5700K temperature during day and 3600K at night)
 exec --no-startup-id redshift -t 5700:3600

@@ -1,0 +1,42 @@
+configuration {
+	modes: "window,drun,run,ssh";
+	font: "Hack 12";
+
+/* Location of the window*/
+/*	location: 0;*/
+/*	yoffset: 0;*/
+/*	xoffset: 0;*/
+
+	fixed-num-lines: true;
+
+/* Icons */
+	show-icons: true;
+	/*icon-theme: ;*/
+	/*drun-icon-theme: "MY_ICON_THEME";*/
+	/*	application-fallback-icon: ;*/
+
+/* "drun" mode settings */
+	/*	drun-match-fields: "name,generic,exec,categories,keywords";*/
+	/*	drun-categories: ;*/
+	/*	drun-show-actions: false;*/
+	/*	drun-display-format: "{name} [<span weight='light' size='small'><i>({generic})</i></span>]";*/
+	/*	drun-url-launcher: "xdg-open";*/
+	/*	drun-use-desktop-cache: false;*/
+	/*	drun-reload-desktop-cache: false;*/
+	/*	hover-select: false;*/
+	
+	timeout {
+		action: "kb-cancel";
+		delay:  0;
+	}
+	
+	filebrowser {
+		directories-first: true;
+		sorting-method:    "name";
+	}
+
+}
+
+@theme "/home/xis/.local/share/rofi/themes/DarkBlue.rasi"
+
+/* vim:ft=css

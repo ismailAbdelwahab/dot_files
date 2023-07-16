@@ -25,15 +25,19 @@ set hlsearch
 
 " =========== Tab management =======
 set autoindent
-set noexpandtab			" Use tabs (not spaces)
+set tabstop=4       " Number of spaces a <Tab> counts for
+set softtabstop=4   " Number of spaces to insert/delete when using <Tab>/<Backspace>
+set shiftwidth=4    " Number of spaces to use for autoindenting
+set expandtab       " Use spaces instead of tabs
+
 set listchars+=tab:>\ 	" Print tabs as '>   '
-set tabstop=4			" Make vim input tabs (and not 4 spaces)
-set shiftwidth=4		" Tabs appears with length = 4
+
+autocmd FileType make setlocal noexpandtab " Use tabs in Makefiles
 
 " =========== Command line =========
 set cmdheight=2			" Set command height to 2 lines
 
 " ============ Folding =============
 set foldmethod=indent
-set foldlevel=1
+set foldlevel=99
 set foldclose=all
