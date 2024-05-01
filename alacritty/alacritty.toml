@@ -1,0 +1,21 @@
+# For more options :
+# https://wiki.archlinux.org/title/Alacritty
+
+[font]
+size = 10.0
+
+[font.bold]
+family = "hack"
+style = "Bold"
+
+[font.bold_italic]
+family = "hack"
+style = "Bold Italic"
+
+[font.italic]
+family = "hack"
+style = "Italic"
+
+[font.normal]
+family = "hack"
+style = "Regular"

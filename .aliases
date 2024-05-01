@@ -36,8 +36,9 @@ alias m="make"
 
 # Vim
 alias v="vim"
+alias view="vim -R"
 
 # Sudo
 alias sudo="sudo "
 # Pacman
-alias p="pacman"
+alias p="sudo pacman"

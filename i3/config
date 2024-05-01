@@ -6,10 +6,11 @@ set $mod Mod4
 	# Set variables refering to folders
 set $CONFIG_FOLDER "$HOME/.config/i3"
 set $BACKGROUND_FOLDER "$HOME/.config/i3/backgrounds"
-set $SCRIPT_FOLDER "/home/xis/.config/i3/scripts"
+set $SCRIPT_FOLDER "/home/isma/.config/i3/scripts"
 set $DEFAULT_SCREENSHOT_OUTPUT_FILE "$HOME/Images/aled.jpg"
 	# Set the default commands to launch default apps
-set $USED_TERMINAL "i3-sensible-terminal"
+set $USED_TERMINAL "alacritty"
+#"i3-sensible-terminal"
 set $USED_BROWSER "firefox"
 #####################################################################################
 #                           Setting fonts + size + Appearance                       #
@@ -45,7 +46,7 @@ bar {
 	-m memory -p memory.format="{percent:.0f}%" \
 	-m cpu -m sensors -p sensors.show_freq="false" \
 	-m battery  \
-	-m pasink \
+	-m pipewire \
 	-m datetime -p datetime.format="%H:%M %d/%m/%y"
 	#-m shortcut -p shortcut.cmds="pavucontrol" shortcut.labels="pavu"\
 	#-m pomodoro -p pomodoro.notify="notify-send 'Time up!'" \
@@ -93,6 +94,50 @@ mode "resize" {
         bindsym $mod+r mode "default"
 }
 bindsym $mod+r mode "resize"
+
+#####################################################################################
+#                           Keyboard Shortcuts                                      #
+#####################################################################################
+##### Reload / Restart / Exit i3
+bindsym $mod+Shift+c reload
+bindsym $mod+Shift+r restart
+
+##### Stack / Tabbed / Toggle windows split modes
+bindsym $mod+s layout stacking
+bindsym $mod+z layout tabbed
+bindsym $mod+e layout toggle split
+
+##### Brightness settings
+bindsym XF86MonBrightnessUp exec brightnessctl set 5%+
+bindsym XF86MonBrightnessDown exec brightnessctl set 5%-
+
+##### Audio settings --->  Use pactl to adjust volume in PulseAudio.
+set $refresh_i3status killall -SIGUSR1 i3status
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10% && $refresh_i3status
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -10% && $refresh_i3status
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
+bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
+
+###### Kill the current focused window
+bindsym $mod+Shift+A kill
+###### Sticky window (stays on all workspace)
+bindsym $mod+w sticky toggle
+
+###### Screenshots
+bindsym Print exec --no-startup-id flameshot gui
+#bindsym Print exec --no-startup-id maim --select | xclip -selection clipboard -t image/png
+bindsym Shift+Print exec --no-startup-id maim | xclip -selection clipboard -t image/png
+bindsym Ctrl+Print exec --no-startup-id maim --select $DEFAULT_SCREENSHOT_OUTPUT_FILE 
+bindsym Ctrl+Shift+Print exec --no-startup-id maim $DEFAULT_SCREENSHOT_OUTPUT_FILE
+
+###################### Starting an application:
+###### Start Application laucher : ( Mod + d ) - [dmenu]
+#bindsym $mod+d exec --no-startup-id dmenu_run -fn "Hack 14"
+bindsym $mod+d exec --no-startup-id rofi -config "/home/xis/.config/rofi/config.rasi" -show drun 
+###### Start terminal: ( Mod + Enter )
+bindsym $mod+Return exec $USED_TERMINAL
+###### Start browser : ( CTRL + Shitf + F )
+bindsym Control+Mod1+f exec $USED_BROWSER
 
 #####################################################################################
 #                          Focus + window management                                #
@@ -167,84 +212,41 @@ bindsym $mod+Shift+agrave move container to workspace number $ws10
 # Default output for workspaces:
 workspace $ws1 output DP-3-1
 workspace $ws2 output DP-3-1
-workspace $ws3 output DP-3-3
+workspace $ws3 output DP-3-2
 
-workspace $ws9 output DP-3-2
+workspace $ws9 output DP-3-3
 
 # Using scatchpad :
 bindsym $mod+Shift+p move scratchpad
 bindsym $mod+p scratchpad show
-#####################################################################################
-#                           Keyboard Shortcuts                                      #
-#####################################################################################
-##### Reload / Restart / Exit i3
-bindsym $mod+Shift+c reload
-bindsym $mod+Shift+r restart
-
-##### Stack / Tabbed / Toggle windows split modes
-bindsym $mod+s layout stacking
-bindsym $mod+z layout tabbed
-bindsym $mod+e layout toggle split
-
-##### Brightness settings
-bindsym XF86MonBrightnessUp exec brightnessctl set 5%+
-bindsym XF86MonBrightnessDown exec brightnessctl set 5%-
-
-##### Audio settings --->  Use pactl to adjust volume in PulseAudio.
-set $refresh_i3status killall -SIGUSR1 i3status
-bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10% && $refresh_i3status
-bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -10% && $refresh_i3status
-bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
-bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
-
-###### Kill the current focused window
-bindsym $mod+Shift+A kill
-###### Sticky window (stays on all workspace)
-bindsym $mod+w sticky toggle
-
-###### Screenshots
-bindsym Print exec --no-startup-id flameshot gui
-#bindsym Print exec --no-startup-id maim --select | xclip -selection clipboard -t image/png
-bindsym Shift+Print exec --no-startup-id maim | xclip -selection clipboard -t image/png
-bindsym Ctrl+Print exec --no-startup-id maim --select $DEFAULT_SCREENSHOT_OUTPUT_FILE 
-bindsym Ctrl+Shift+Print exec --no-startup-id maim $DEFAULT_SCREENSHOT_OUTPUT_FILE
-
-###################### Starting an application:
-###### Start Application laucher : ( Mod + d ) - [dmenu]
-#bindsym $mod+d exec --no-startup-id dmenu_run -fn "Hack 14"
-bindsym $mod+d exec --no-startup-id rofi -config "/home/xis/.config/rofi/config.rasi" -show drun 
-###### Start terminal: ( Mod + Enter )
-bindsym $mod+Return exec $USED_TERMINAL
-###### Start browser : ( CTRL + Shitf + F )
-bindsym Control+Mod1+f exec $USED_BROWSER
 
 #####################################################################################
 #                  Make window stay on specific workspaces                          #
 #####################################################################################
-assign [class="obsidian"] $ws3
+assign [class="Cherrytree"] $ws3
 assign [class="discord"] $ws9
 
 #####################################################################################
 #                               Startup config                                      #
 #   Worspace 1 : Browser                                                            #
 #   Worspace 2 : 2 Terminals                                                        #
-#   Worspace 3 : Obsidian                                                           #
+#   Worspace 3 : Cherrytree                                                         #
 #   Worspace 6 : Music/Video                                                        #
 #   Worspace 9 : Discord                                                            #
 #####################################################################################
 #exec --no-startup-id /usr/local/bin/SCREEN_SETUP.sh
-exec --no-startup-id $HOME/.screenlayout/desk_setup.sh
-exec --no-startup-id i3-msg 'workspace $ws1; exec $USED_BROWSER'
-exec --no-startup-id i3-msg 'workspace $ws2; exec $USED_TERMINAL; exec $USED_TERMINAL'
-exec --no-startup-id obsidian
+exec --no-startup-id $HOME/.screenlayout/4_screens.sh
+exec --no-startup-id sleep 2 && i3-msg 'workspace $ws2; exec $USED_TERMINAL; exec $USED_TERMINAL'
+exec --no-startup-id cherrytree
 exec --no-startup-id discord
+exec --no-startup-id i3-msg 'workspace $ws1; exec $USED_BROWSER'
 
 # xss-lock grabs a logind suspend inhibit lock and will use i3lock to lock the screen before suspend. Use loginctl lock-session to lock your screen.
 exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 
 # Applets : Network, Bluetooth
 exec --no-startup-id nm-applet
-exec --no-startup-id blueman-applet
+#exec --no-startup-id blueman-applet
 
 ### Composite manager :
 # Launch compton (to get transparency settings working):

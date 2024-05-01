@@ -37,6 +37,8 @@ configuration {
 
 }
 
-@theme "/home/xis/.local/share/rofi/themes/DarkBlue.rasi"
+//@theme "/home/xis/.dotfiles/rofi/theme.rasi"
+/*@theme "/home/xis/.local/share/rofi/themes/DarkBlue.rasi"
 
 /* vim:ft=css
+@theme "/usr/share/rofi/themes/gruvbox-dark.rasi"
