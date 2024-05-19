@@ -1,6 +1,6 @@
-------------------
--- Vimrc config --
-------------------
+-------------------------------
+-- Vimrc config && Shortcuts --
+-------------------------------
 require("vimrc-config")
 
 ---------------------
@@ -22,8 +22,3 @@ vim.opt.rtp:prepend(lazypath)
 -- Pluggins --
 --------------
 require("lazy").setup("plugins")
-
----------------
--- Shortcuts --
----------------
-
