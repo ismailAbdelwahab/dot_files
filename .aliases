@@ -19,9 +19,10 @@ alias grep="grep --color=auto"
 alias egrep="egrep --color=auto"
 alias fgrep="fgrep --color=auto"
 	#crontab
-alias crontab="EDITOR=\"vim\" crontab"
+alias crontab="EDITOR=\"nvim\" crontab"
 # tree
 alias tree="tree -I .git"
+alias t="tree -I .git -L 2"
 
 # git
 alias g="git"
@@ -34,9 +35,9 @@ alias d="docker"
 # Make
 alias m="make"
 
-# Vim
-alias v="vim"
-alias view="vim -R"
+# nvim // vim
+alias n="nvim"
+alias view="nvim -R"
 
 # Sudo
 alias sudo="sudo "

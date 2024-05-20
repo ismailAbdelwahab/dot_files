@@ -103,7 +103,7 @@ setopt glob_dots     # no special treatment for file names with a leading dot
 setopt no_auto_menu  # require an extra TAB press to open the completion menu
 
 # Export editor
-EDITOR="vim"
+EDITOR="nvim"
 # Enable vi mode
 #bindkey -v
 
@@ -114,3 +114,6 @@ source $HOME/.aliases
 export GTK_THEME=Adwaita:dark
 export GTK2_RC_FILES=/usr/share/themes/Adwaita-dark/gtk-2.0/gtkrc
 export QT_STYLE_OVERRIDE=adwaita-dark
+
+# Edit the GOPATH here:
+export GOPATH=$HOME/.go
