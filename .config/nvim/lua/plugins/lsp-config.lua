@@ -39,10 +39,6 @@ return {
             lspconfig.phpactor.setup({ capabilities = capabilities })
             lspconfig.sqls.setup({ capabilities = capabilities })
 
-            vim.keymap.set("n", "K", vim.lsp.buf.hover, {})       -- Know more about what hovered
-            vim.keymap.set("n", "<leader>gd", vim.lsp.buf.definition, {}) -- Jump to code definition
-            vim.keymap.set("n", "<leader>gr", vim.lsp.buf.references, {}) -- Jump to code references
-            vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, {}) -- Act on code under cursor
         end,
     },
 }
