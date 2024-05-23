@@ -28,3 +28,13 @@ vim.keymap.set("n", "<leader>fg", ":Telescope live_grep<CR>", { desc = "Find gre
 
 -- Treesitter (code selection)
 -- Check the "lua/plugins/treesitter.lua" file
+
+-- Neorg
+vim.keymap.set('n', '<leader>ni', ':Neorg index<CR>', { desc = "Open Neorg Index" })
+vim.keymap.set('n', '<leader>nr', ':Neorg return<CR>', { desc = "Exit Neorg using the 'return' command" })
+vim.keymap.set('n', '<leader>nm', ':Neorg inject-metadata<CR>', { desc = "Inject metadata to the current note" })
+vim.keymap.set('n', '<leader>nj', ':Neorg journal<CR>', { desc = "Open Neorg journal" })
+vim.keymap.set('n', '<leader>nc', ':Neorg journal custom<CR>', { desc = "Open Neorg calendar" })
+vim.keymap.set('n', '<leader>nc', ':Neorg toggle-concealer<CR>', { desc = "Toggles Neorg concealer mode" })
+vim.keymap.set('n', '<leader>nws', ':Neorg generate-workspace-summary<CR>', { desc = "Generate the current's workspace summary" })
+vim.keymap.set('n', '<leader>nt', ':Neorg toc<CR>', { desc = "Generate TOC" })
