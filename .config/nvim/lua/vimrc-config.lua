@@ -29,8 +29,3 @@ vim.cmd("set virtualedit=block")
 
 -- Split on modifications
 vim.cmd("set inccommand=split")
-
----------------------------------------------
--- Specific modification tied to languages --
----------------------------------------------
-vim.cmd("autocmd FileType make setlocal noexpandtab") -- Tabs in makefile

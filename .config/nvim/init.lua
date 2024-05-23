@@ -2,6 +2,7 @@
 -- Vimrc config && Shortcuts --
 -------------------------------
 require("vimrc-config")
+require("autocommands")
 require("shortcuts")
 
 ---------------------
