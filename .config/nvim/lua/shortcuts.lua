@@ -20,6 +20,10 @@ vim.keymap.set("n", "C-l", ":TmuxNavigateRight<CR>", { desc = "Move focus to RIG
 vim.keymap.set("n", "<leader>ff", ":Telescope find_files<CR>", { desc = "Find file" })
 vim.keymap.set("n", "<leader>fg", ":Telescope live_grep<CR>", { desc = "Find grep" })
 
+-- Oil
+vim.keymap.set("n", "-", "<CMD>Oil<CR>", { desc = "Open parent directory" })
+vim.keymap.set("n", "<Leader>o", ":Oil --float %:p:h<CR>", { desc = "Open oil on the parent directory of the current's file in the buffer" })
+
 -- Tree sitter
 -- Check the "lua/plugins/treesitter.lua" file
 
