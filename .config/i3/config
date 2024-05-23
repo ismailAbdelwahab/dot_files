@@ -7,9 +7,10 @@ set $mod Mod4
 set $CONFIG_FOLDER "$HOME/.config/i3"
 set $BACKGROUND_FOLDER "$HOME/.config/i3/backgrounds"
 set $SCRIPT_FOLDER "/home/isma/.config/i3/scripts"
-set $DEFAULT_SCREENSHOT_OUTPUT_FILE "$HOME/Images/aled.jpg"
+set $DEFAULT_SCREENSHOT_OUTPUT_FILE "$HOME/Media/Images/aled.jpg"
 	# Set the default commands to launch default apps
-set $USED_TERMINAL "alacritty"
+#set $USED_TERMINAL "alacritty"
+set $USED_TERMINAL "kitty"
 #"i3-sensible-terminal"
 set $USED_BROWSER "firefox"
 #####################################################################################
@@ -229,14 +230,13 @@ assign [class="discord"] $ws9
 #####################################################################################
 #                               Startup config                                      #
 #   Worspace 1 : Browser                                                            #
-#   Worspace 2 : 2 Terminals                                                        #
-#   Worspace 3 : Cherrytree                                                         #
-#   Worspace 6 : Music/Video                                                        #
+#   Worspace 2 : Terminal(s)                                                        #
+#   Worspace 3 : Note taking                                                        #
+#   Worspace 6 : Media                                                              #
 #   Worspace 9 : Discord                                                            #
 #####################################################################################
-#exec --no-startup-id /usr/local/bin/SCREEN_SETUP.sh
 exec --no-startup-id $HOME/.screenlayout/4_screens.sh
-exec --no-startup-id sleep 2 && i3-msg 'workspace $ws2; exec $USED_TERMINAL; exec $USED_TERMINAL'
+exec --no-startup-id sleep 2 && i3-msg 'workspace $ws2; exec $USED_TERMINAL'
 exec --no-startup-id cherrytree
 exec --no-startup-id discord
 exec --no-startup-id i3-msg 'workspace $ws1; exec $USED_BROWSER'
@@ -244,14 +244,12 @@ exec --no-startup-id i3-msg 'workspace $ws1; exec $USED_BROWSER'
 # xss-lock grabs a logind suspend inhibit lock and will use i3lock to lock the screen before suspend. Use loginctl lock-session to lock your screen.
 exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 
+# Notification daemon
+exec --no-startup-id dunst
+
 # Applets : Network, Bluetooth
 exec --no-startup-id nm-applet
 #exec --no-startup-id blueman-applet
-
-### Composite manager :
-# Launch compton (to get transparency settings working):
-#exec --no-startup-id compton -f
-exec_always --no-startup-id picom --config $HOME/.config/picom/picom.conf
 
 # Activate night shift: (5700K temperature during day and 3600K at night)
 exec --no-startup-id redshift -t 5700:3600
@@ -259,10 +257,19 @@ exec --no-startup-id redshift -t 5700:3600
 # Use the HEADSET MIC by default:
 exec --no-startup-id pacmd set-source-port alsa_input.pci-0000_00_1f.3.analog-stereo analog-input-headset-mic
 
+# Create the /tmp/todel directory
+exec --no-startup-id mkdir -p /tmp/todel
+
 #####################################################################################
 #                         Automatic on relaunch                                     #
 #####################################################################################
 # Set wallpaper :
 exec_always --no-startup-id bash $SCRIPT_FOLDER/select_random_background.sh | xargs feh --bg-fill
+
 # Make the "touch to click" option ENABLE for mousepad :
 exec_always --no-startup-id xinput set-prop "DLL0945:00 06CB:76B1 Touchpad" "libinput Tapping Enabled" 1
+
+### Composite manager :
+# Launch compton (to get transparency settings working):
+#exec --no-startup-id compton -f
+#exec_always --no-startup-id picom --config $HOME/.config/picom/picom.conf
