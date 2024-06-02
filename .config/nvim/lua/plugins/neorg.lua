@@ -23,10 +23,10 @@ return {
 					["core.concealer"] = {}, -- TODO : Check folding config here
 					--["core.integrations.image"] = {},
 					--["core.latex.renderer"] = {},
-					["core.summary"] = { config = { strategy = "by_path" } },
+                    ["core.summary"] = { },
 					["core.dirman"] = {
 						config = {
-							workspaces = { notes = "~/Documents/Notes/" },
+							workspaces = { notes = "~/Personal/MyNotes/" },
 							default_workspace = "notes",
 						},
 					},

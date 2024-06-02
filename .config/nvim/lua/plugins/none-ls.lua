@@ -13,6 +13,12 @@ return {
                 null_ls.builtins.formatting.isort,
                 -- C, cpp
                 null_ls.builtins.formatting.cppcheck,
+                -- JavaScript, TypeScript, JSON, HTML, Markdown, and CSS
+                null_ls.builtins.formatting.biome,
+                -- Go
+                null_ls.builtins.diagnostics.golangci_lint,
+                -- Rust
+                null_ls.builtins.formatting.dxfmt,
             },
         })
     end,

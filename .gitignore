@@ -4,3 +4,4 @@ BACKUPS/
 
 # i3
 i3/backgrounds/*.png
+.config/i3/backgrounds/old/
