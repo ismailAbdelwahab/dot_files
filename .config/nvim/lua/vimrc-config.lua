@@ -11,8 +11,7 @@ vim.cmd("set termguicolors")
 -- Informations
 vim.cmd("set nu rnu")
 vim.cmd("set wildmenu")
--- Ignore case for command completion
-vim.cmd("set ignorecase")
+vim.cmd("set smartcase")
 vim.cmd("set list")
 vim.cmd("set title")
 vim.cmd("set ruler")

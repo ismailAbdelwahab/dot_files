@@ -1,3 +1,8 @@
+-----------------------
+-- Defualt shortcuts --
+-----------------------
+vim.keymap.set("i", "<C-n>", "<C-x><C-n>", { desc = "Autocomplete in insert mode" })
+
 --------------
 -- Neo-tree --
 --------------
