@@ -7,6 +7,7 @@ vim.g.mapleader = " "
 vim.cmd("filetype on")
 vim.cmd("syntax on")
 vim.cmd("set termguicolors")
+vim.cmd("set foldlevel=99")
 
 -- Informations
 vim.cmd("set nu rnu")
