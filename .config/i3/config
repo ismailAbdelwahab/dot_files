@@ -236,7 +236,7 @@ assign [class="discord"] $ws9
 exec --no-startup-id $HOME/.screenlayout/4_screens.sh
 exec --no-startup-id i3-msg 'workspace $ws1; exec $USED_BROWSER'
 exec --no-startup-id sleep 1 && i3-msg 'workspace $ws2; exec $USED_TERMINAL'
-exec --no-startup-id sleep 1 && i3-msg 'workspace $ws3; exec kitty zsh -c "nvim -c \":Neorg\""'
+exec --no-startup-id sleep 1 && i3-msg 'workspace $ws3; exec kitty zsh -c "nvim ~/Personal/MyNotes/index.md"'
 exec --no-startup-id discord
 
 # xss-lock grabs a logind suspend inhibit lock and will use i3lock to lock the screen before suspend. Use loginctl lock-session to lock your screen.
