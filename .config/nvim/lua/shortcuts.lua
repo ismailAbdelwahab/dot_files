@@ -43,6 +43,10 @@ vim.keymap.set("n", "<leader>/", ":Telescope current_buffer_fuzzy_find<CR>", { d
 -- Oil --
 ---------
 vim.keymap.set("n", "<Leader>o", ":Oil --float %:p:h<CR>", { desc = "Open oil" })
+---------------------
+-- Makdown related --
+---------------------
+vim.keymap.set('n', '<bs>', ':edit #<cr>', { silent = true }) -- Use return to get back from following a link
 
 -----------
 -- Neorg --
