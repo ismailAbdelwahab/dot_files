@@ -3,6 +3,19 @@
 -----------------------
 vim.keymap.set("i", "<C-n>", "<C-x><C-n>", { desc = "Autocomplete in insert mode" })
 
+------------------------------
+-- Copy current's file info --
+------------------------------
+vim.keymap.set("n", "<leader>cfp", ":let @+ = expand(\"%\")<CR>", { desc = "Copy current file's fullpath to clipboard" })
+vim.keymap.set("n", "<leader>cfn", ":let @+ = expand(\"%:t\")<CR>", { desc = "Copy current file's name to clipboard" })
+vim.keymap.set("n", "<leader>cfN", ":let @+ = expand(\"%:t:r\")<CR>", { desc = "Copy current file's name (without extension) to clipboard" })
+vim.keymap.set("n", "<leader>cfe", ":let @+ = expand(\"%:e\")<CR>", { desc = "Copy current file's extension to clipboard" })
+
+-----------------
+-- Note taking --
+-----------------
+vim.keymap.set("n", "<leader>ni", ":e /home/isma/Personal/MyNotes/index.md<CR>", { desc = "Open my note's index" })
+
 --------------
 -- Neo-tree --
 --------------
@@ -43,26 +56,11 @@ vim.keymap.set("n", "<leader>/", ":Telescope current_buffer_fuzzy_find<CR>", { d
 -- Oil --
 ---------
 vim.keymap.set("n", "<Leader>o", ":Oil --float %:p:h<CR>", { desc = "Open oil" })
+
 ---------------------
 -- Makdown related --
 ---------------------
 vim.keymap.set('n', '<bs>', ':edit #<cr>', { silent = true }) -- Use return to get back from following a link
-
------------
--- Neorg --
------------
---- Open / Exit neorg
-vim.keymap.set("n", "<leader>ni", ":Neorg index<CR>", { desc = "Open Neorg Index" })
-vim.keymap.set("n", "<leader>nr", ":Neorg return<CR>", { desc = "Exit Neorg using the 'return' command" })
---- Generate Metadata && Summary && TOC
-vim.keymap.set("n", "<leader>nm", ":Neorg inject-metadata<CR>", { desc = "Inject metadata to the current note" })
-vim.keymap.set("n", "<leader>nws", ":Neorg generate-workspace-summary<CR>", { desc = "Generate the current's workspace summary" })
-vim.keymap.set("n", "<leader>nt", ":Neorg toc<CR>", { desc = "Generate TOC" })
---- Journal && Calendar
-vim.keymap.set("n", "<leader>nj", ":Neorg journal<CR>", { desc = "Open Neorg journal" })
-vim.keymap.set("n", "<leader>nc", ":Neorg journal custom<CR>", { desc = "Open Neorg calendar" })
---- Toggle concealer
-vim.keymap.set("n", "<leader>nc", ":Neorg toggle-concealer<CR>", { desc = "Toggles Neorg concealer mode" })
 
 -------------------------
 -- Dedicated shortcuts --
