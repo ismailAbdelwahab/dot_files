@@ -36,6 +36,7 @@ client.background       #ffffff
 #####################################################################################
 bar {
 	position top
+    tray_output primary
 	#status_command i3status --config $CONFIG_DIR/bar/i3status.conf
 	status_command bumblebee-status -t dracula-powerline \
 	-m pacman -p pacman.sum="true"\
@@ -66,9 +67,9 @@ gaps outer 5
 set $mode_system Suspend (s) // Hibernate (h) // Logout (Shift+e) // Reboot (Shift+r) // Shutdown (Shift+s)
 mode "$mode_system" {
 	# Suspend
-	bindsym s exec --no-startup-id "echo $HOME/.config/i3/backgrounds/$(ls $HOME/.config/i3/backgrounds/ | shuf -n 1) | xargs i3lock -e -f -i && sleep 1 && systemctl suspend", mode "default"
+	bindsym s exec --no-startup-id "echo $HOME/.config/i3/backgrounds/$(ls $HOME/.config/i3/backgrounds/*.jpg | shuf -n 1) | xargs i3lock -e -f -i && sleep 1 && systemctl suspend", mode "default"
 	# Hibernate
-	bindsym h exec --no-startup-id "echo $HOME/.config/i3/backgrounds/$(ls $HOME/.config/i3/backgrounds/ | shuf -n 1) | xargs i3lock -e -f -i && sleep 1 && systemctl hibernate", mode "default"
+	bindsym h exec --no-startup-id "echo $HOME/.config/i3/backgrounds/$(ls $HOME/.config/i3/backgrounds/*.jpg | shuf -n 1) | xargs i3lock -e -f -i && sleep 1 && systemctl hibernate", mode "default"
 	bindsym Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
 	bindsym Shift+r exec "i3-nagbar -m 'Do you want to REBOOT your system ?' -B 'Yes, reboot' 'systemctl reboot'"
 	bindsym Shift+s exec "i3-nagbar -m 'Do you want to SHUTDOWN your system ?' -B 'Yes, shutdown' 'systemctl poweroff'"
@@ -80,7 +81,8 @@ mode "$mode_system" {
 }
 bindsym $mod+Shift+l mode "$mode_system"
 # Lock
-bindsym $mod+l exec --no-startup-id "echo $HOME/.config/i3/backgrounds/$(ls $HOME/.config/i3/backgrounds/ | shuf -n 1) | xargs i3lock -e -f -t -i && sleep 1", mode "default"
+#bindsym $mod+l exec --no-startup-id "echo $HOME/.config/i3/backgrounds/$(ls $HOME/.config/i3/backgrounds/*.jpg | shuf -n 1) | xargs i3lock -e -f -t -i && sleep 1", mode "default"
+bindsym $mod+l exec --no-startup-id "i3lock -e -f -t -i  $HOME/.config/i3/backgrounds/desk_cyberpunk.png && sleep 1", mode "default"
 
 ######### Resize mode
 mode "resize" {
@@ -237,17 +239,13 @@ exec --no-startup-id $HOME/.screenlayout/4_screens.sh
 exec --no-startup-id i3-msg 'workspace $ws1; exec $USED_BROWSER'
 exec --no-startup-id sleep 1 && i3-msg 'workspace $ws2; exec $USED_TERMINAL'
 exec --no-startup-id sleep 1 && i3-msg 'workspace $ws3; exec kitty zsh -c "nvim ~/Personal/MyNotes/index.md"'
-exec --no-startup-id discord
+#exec --no-startup-id discord
 
 # xss-lock grabs a logind suspend inhibit lock and will use i3lock to lock the screen before suspend. Use loginctl lock-session to lock your screen.
 exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 
 # Notification daemon
 exec --no-startup-id dunst
-
-# Applets : Network, Bluetooth
-exec --no-startup-id nm-applet
-#exec --no-startup-id blueman-applet
 
 # Activate night shift: (5700K temperature during day and 3600K at night)
 exec --no-startup-id redshift -t 5700:3600
@@ -261,6 +259,10 @@ exec --no-startup-id mkdir -p /tmp/todel
 #####################################################################################
 #                         Automatic on relaunch                                     #
 #####################################################################################
+# Applets : Network, Bluetooth
+exec_always --no-startup-id nm-applet
+#exec --no-startup-id blueman-applet
+
 # Set wallpaper :
 exec_always --no-startup-id /usr/bin/feh --randomize --bg-fill ${HOME}/$BACKGROUND_DIR/
 
