@@ -12,7 +12,7 @@ vim.cmd("set foldlevel=99")
 -- Informations
 vim.cmd("set nu rnu")
 vim.cmd("set wildmenu")
-vim.cmd("set smartcase")
+vim.cmd("set ignorecase")
 vim.cmd("set list")
 vim.cmd("set title")
 vim.cmd("set ruler")

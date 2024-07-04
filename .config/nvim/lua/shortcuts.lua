@@ -15,6 +15,7 @@ vim.keymap.set("n", "<leader>cfe", ":let @+ = expand(\"%:e\")<CR>", { desc = "Co
 -- Note taking --
 -----------------
 vim.keymap.set("n", "<leader>ni", ":e /home/isma/Personal/MyNotes/index.md<CR>", { desc = "Open my note's index" })
+vim.keymap.set("n", "<leader>nv", ":let outputfile='/tmp/a.pdf' | execute ':! pandoc % -o ' . outputfile . ' && firefox ' . outputfile<CR>", { desc = "View current .md file as PDF (using pandoc)" })
 
 --------------
 -- Neo-tree --
