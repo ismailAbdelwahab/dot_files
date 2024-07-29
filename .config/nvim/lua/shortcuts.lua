@@ -1,4 +1,4 @@
------------------------
+----------------------
 -- Defualt shortcuts --
 -----------------------
 vim.keymap.set("i", "<C-n>", "<C-x><C-n>", { desc = "Autocomplete in insert mode" })
@@ -11,11 +11,27 @@ vim.keymap.set("n", "<leader>cfn", ":let @+ = expand(\"%:t\")<CR>", { desc = "Co
 vim.keymap.set("n", "<leader>cfN", ":let @+ = expand(\"%:t:r\")<CR>", { desc = "Copy current file's name (without extension) to clipboard" })
 vim.keymap.set("n", "<leader>cfe", ":let @+ = expand(\"%:e\")<CR>", { desc = "Copy current file's extension to clipboard" })
 
+-- Insert string --
+-------------------
+vim.keymap.set('n', '<Leader>id', function() vim.api.nvim_put({os.date('%Y-%m-%d')}, 'c', true, true) end, { desc = "Insert current date in the ISO 8601 format" })
+
 -----------------
 -- Note taking --
 -----------------
 vim.keymap.set("n", "<leader>ni", ":e /home/isma/Personal/MyNotes/index.md<CR>", { desc = "Open my note's index" })
 vim.keymap.set("n", "<leader>nv", ":let outputfile='/tmp/a.pdf' | execute ':! pandoc % -o ' . outputfile . ' && firefox ' . outputfile<CR>", { desc = "View current .md file as PDF (using pandoc)" })
+vim.keymap.set('n', '<leader>nn', function()
+  local title = vim.fn.input('Enter new note\'s filename: ')
+  if filename == '' then
+    print('Aborted: No file name provided.')
+    return
+  end
+  local filename = title:gsub(' ', '_')
+  local timestamp = os.date('%Y%m%d%H%M')
+  local fullpath = string.format('%s/Personal/MyNotes/%s-%s.md', vim.fn.expand('~'), timestamp, filename)
+  vim.fn.writefile({"# " .. title}, fullpath)
+  vim.cmd('edit ' .. fullpath)
+end, {  desc = "Create a new note in my ZK (format: YYYYMMDDhhmm-<title>)" })
 
 --------------
 -- Neo-tree --
